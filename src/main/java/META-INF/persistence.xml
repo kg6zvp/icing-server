@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- persistence.xml configures the database connection for this project using JPA (google 'java jpa') -->
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<!-- A persistence unit is a group of related classes, typically referencing each other and inside one relational database -->
+	<persistence-unit name="media">
+		<!-- These are the extra configuration parameters for a specific JPA implementation -->
+		<properties>
+			<!-- This property is telling Hibernate (the JPA implementation built into Wildfly and JBoss; google 'hibernate jpa' and 'java jpa' for more info) to automatically create all the proper tables for the @Entity classes in this project and those @Entity classes specified in class directives inside the database or to update the existing database schema to accommodate changes to the classes -->
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<!-- This property is telling Hibernate that it's okay to create SQL statements that extend over multiple lines (this is often necessary) -->
+			<property name="hibernate.hbm2ddl.import_files_sql_extractor" value="org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor" />
+		</properties>
+	</persistence-unit>
+</persistence>

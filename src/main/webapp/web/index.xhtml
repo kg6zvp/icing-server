@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions" >
+
+<h:head>
+	<title>media</title>
+</h:head>
+	<!-- Run some java code before the view is loaded -->
+	<f:event listener="#{bean.doPreLoadFunction()}" type="preRenderView"></f:event>
+
+	<h:body>
+		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+		
+		</div>
+	</h:body>
+</html>
