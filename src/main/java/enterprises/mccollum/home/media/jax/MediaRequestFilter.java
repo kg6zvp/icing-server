@@ -3,28 +3,32 @@ package enterprises.mccollum.home.media.jax;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 
+import javax.inject.Inject;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.ext.Provider;
 
+import enterprises.mccollum.home.media.model.FilePathCodec;
+
 @Provider
 @PreMatching
 public class MediaRequestFilter implements ContainerRequestFilter {
+	@Inject
+	FilePathCodec pathCodec;
 
 	@Override
 	public void filter(ContainerRequestContext reCtx) throws IOException {
 		String path = reCtx.getUriInfo().getPath();
 		System.out.println("path: "+path);
-		if(!path.startsWith(RawMedia.PATH))
+		if(!path.startsWith(RawMediaJax.PATH))
 			return;
-		String realPath = path.substring(RawMedia.PATH.length());
-		String encodedPath = Base64.getUrlEncoder().withoutPadding().encodeToString(realPath.getBytes(StandardCharsets.UTF_8));
+		String baseUrl = path.substring(0, path.indexOf("/", RawMediaJax.PATH.length()));
+		String realPath = path.substring(baseUrl.length());
+		String encodedPath = pathCodec.encodePath(realPath);
 		try {
-			reCtx.setRequestUri(new URI(RawMedia.PATH));
+			reCtx.setRequestUri(new URI(baseUrl));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
