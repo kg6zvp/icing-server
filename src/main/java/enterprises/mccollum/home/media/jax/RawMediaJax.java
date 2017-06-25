@@ -4,7 +4,6 @@ import java.io.File;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -26,9 +25,9 @@ public class RawMediaJax {
 	FilePathCodec pathCodec;
 	
 	@GET
-	@Path("{source}")
+	@Path("{source}/{path}")
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public Response getFile(@PathParam("source")String source, @HeaderParam("path")String filePathEncoded){
+	public Response getFile(@PathParam("source")String source, @PathParam("path")String filePathEncoded){
 		String filePath = pathCodec.decodePath(filePathEncoded);
 		String basePath = System.getProperty("media.filepath.base");
 		System.out.println("Getting "+basePath+filePath);

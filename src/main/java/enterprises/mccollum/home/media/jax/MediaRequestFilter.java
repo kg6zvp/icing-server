@@ -28,11 +28,10 @@ public class MediaRequestFilter implements ContainerRequestFilter {
 		String realPath = path.substring(baseUrl.length());
 		String encodedPath = pathCodec.encodePath(realPath);
 		try {
-			reCtx.setRequestUri(new URI(baseUrl));
+			reCtx.setRequestUri(new URI(baseUrl+"/"+encodedPath));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		reCtx.getHeaders().add("path", encodedPath);
+		//reCtx.getHeaders().add("path", encodedPath);
 	}
-
 }
