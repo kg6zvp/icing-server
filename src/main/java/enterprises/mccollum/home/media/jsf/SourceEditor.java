@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.ejb.Stateful;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,7 +13,8 @@ import enterprises.mccollum.home.media.model.MediaSource;
 import enterprises.mccollum.home.media.model.MediaSourceDao;
 
 @Named
-@ConversationScoped
+//@ConversationScoped
+@RequestScoped
 @Stateful(passivationCapable=true)
 public class SourceEditor {
 	@Inject
