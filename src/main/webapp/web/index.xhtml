@@ -16,17 +16,19 @@
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 			<o:form id="media_source_form">
 				<p:panel header="Source" styleClass="ui-noborder">
-					<div align="right">
-						<p:commandButton id="updateBtn" value="Refresh Link Preview" update="urldisplay" />
-					</div>
 					<p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
 						<p:outputLabel value="Name" /><p:inputText value="#{sourceEditor.source.name}" />
-						<p:outputLabel value="Protocol" /><p:inputText value="#{sourceEditor.source.protocol}" />
+						<p:outputLabel value="Protocol" />
+						<p:selectOneMenu id="protocol" value="#{sourceEditor.source.protocol}" editable="true"> <!-- effect="fold" editable="true"> -->
+            				<f:selectItem itemLabel="Select One" itemValue="" />
+            				<f:selectItems value="#{sourceEditor.supportedProtocols}" />
+        				</p:selectOneMenu>
 						<p:outputLabel value="Host" /><p:inputText value="#{sourceEditor.source.host}" />
 						<p:outputLabel value="Base Path" /><p:inputText value="#{sourceEditor.source.basePath}" />
 						<p:outputLabel value="Username" /><p:inputText value="#{sourceEditor.source.username}" />
 						<p:outputLabel value="Password" /><p:password value="#{sourceEditor.source.password}" />
 					</p:panelGrid>
+					<p:commandButton id="updateBtn" value="Refresh Link Preview" update="urldisplay" />
 					<p:outputLabel id="urldisplay" value="#{sourceEditor.urlDisplay}" />
 					<div align="right">
 						<p:commandButton id="saveButton" value="Save" actionListener="#{sourceEditor.save()}" update="urldisplay" />
