@@ -39,20 +39,20 @@ public class MediaSource {
 	 * @return
 	 */
 	public String getCompleteUrl(){
-		StringBuilder sb = new StringBuilder(protocol+"://");
-		if(username != null){
+		StringBuilder sb = new StringBuilder(str(protocol) ? protocol+"://" : "");
+		if(str(username)){
 			sb.append(username);
-			if(password != null){
+			if(str(password)){
 				sb.append(":"+password);
 			}
 			sb.append('@');
 		}
-		if(host != null){
+		if(str(host)){
 			sb.append(host);
 			if(port != null)
 				sb.append(":"+port);
 		}
-		if(basePath != null){
+		if(str(basePath)){
 			sb.append(basePath);
 		}
 		return sb.toString();
@@ -138,5 +138,9 @@ public class MediaSource {
 	@SuppressWarnings("unused")
 	private void logf(String format, Object...args) {
 		Logger.getLogger(MediaSource.class.getSimpleName()).log(Level.INFO, String.format(format, args));
+	}
+	
+	boolean str(String str){
+		return (str != null && str.length() > 0);
 	}
 }
