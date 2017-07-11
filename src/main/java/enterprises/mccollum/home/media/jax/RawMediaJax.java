@@ -72,13 +72,15 @@ public class RawMediaJax {
 		try {
 			ResponseBuilder builder = null;
 			if(src.getProtocol().equals("file")){
-				builder = Response.ok(new File(src.getBasePath()+"/"+filePath));
+				File f = new File(src.getBasePath()+"/"+filePath);
+				builder = Response.ok(f)
+								.header("Content-Length", f.length()-parseRangeIgnoreEnd());
 			}else{
 				FileContent file = VFS.getManager().resolveFile(src.getCompleteUrl()+"/"+filePath).getContent();
 				RandomAccessContent fContents = file.getRandomAccessContent(RandomAccessMode.READ);
 				fContents.seek(parseRangeIgnoreEnd());
 				builder = Response.ok(fContents.getInputStream())
-								.header("Content-Length", file.getSize());
+								.header("Content-Length", file.getSize()-parseRangeIgnoreEnd());
 			}
 			return builder.header("Content-Type", MimeTypes.getInstance().getByExtension(fileExtention).getMimeType())
 						.header("Accept-Ranges", "bytes")
