@@ -8,14 +8,19 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.github.amr.mimetypes.MimeTypes;
+
+import enterprises.mccollum.jee.urlutils.UrlContextUtils;
 
 
 @Named
 @RequestScoped
 public class RawPage{
+	@Inject
+	UrlContextUtils urlCtxUtils;
 
 	public RawPage(){}
 	
@@ -31,14 +36,8 @@ public class RawPage{
 	}
 	
 	public String getUrl(){
-//		try {
-			return "http://localhost:8080/media/api/raw/"+getParam("source")+"/"+getParam("filePath");
-			/*return URLEncoder.encode("http://localhost:8080/media/api/raw/"+getParam("source")+"/"+getParam("filePath"), "UTF-8") ;
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "null";//*/
+		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		return urlCtxUtils.getApplicationBaseUrl(req)+"/api/raw/"+getParam("source")+"/"+getParam("filePath");
 	}
 	
 	private String getParam(String param){
