@@ -10,26 +10,26 @@
 	xmlns:prettyfaces="http://ocpsoft.com/prettyfaces" >
 	
 	<h:head>
+		<title>#{rawPage.title}</title>
+		
 		<link href="http://vjs.zencdn.net/6.2.0/video-js.css" rel="stylesheet"/>
 		<!-- If you'd like to support IE8 -->
 		<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 		
-		<title>#{rawPage.title}</title>
+		<script type="text/javascript">
+			function initPage(){
+				movie = document.getElementById('movie');
+				movie.controls = true;
+				movie.play();
+			}
+		</script>
 	</h:head>
 	
-	<h:body>
+	<h:body onload="initPage()">
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 			<p:panel header="Video" styleClass="ui-noborder">
-				<video id="my-video" class="video-js vjs-controls-enabled vjs-workinghover vjs-mux vjs-has-started vjs-user-inactive vjs-paused vjs-ended" preload="auto"
-					width="640" height="264" poster="http://i0.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg"
-					data-setup="{}">
-					<source src="#{rawPage.url}" type='#{rawPage.mimeType}'/>
-					<p class="vjs-no-js">
-						To view this video please enable JavaScript, and consider upgrading
-						to a web browser that <a
-							href="http://videojs.com/html5-video-support/" target="_blank">supports
-							HTML5 video</a>
-					</p>
+				<video id="movie" src="#{rawPage.url}"
+					width="640" height="264" type="#{rawPage.mimeType}" >
 				</video>
 
 			<script src="http://vjs.zencdn.net/6.2.0/video.js"></script>
