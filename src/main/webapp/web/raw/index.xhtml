@@ -18,9 +18,9 @@
 		
 		<script type="text/javascript">
 			function initPage(){
-				movie = document.getElementById('movie');
-				movie.controls = true;
-				movie.play();
+				//movie = document.getElementById('movie');
+				//movie.controls = true;
+				//movie.play();
 			}
 		</script>
 	</h:head>
@@ -28,8 +28,8 @@
 	<h:body onload="initPage()">
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 			<p:panel header="#{rawPage.title}" styleClass="ui-noborder">
-				<video id="movie" src="#{rawPage.url}"
-					width="640" height="264" type="#{rawPage.mimeType}" >
+				<video id="movie" src="#{rawPage.url}" type="#{rawPage.mimeType}"
+					width="640" height="264" preload='metadata' controls='' autoplay='' >
 				</video>
 
 			<script src="http://vjs.zencdn.net/6.2.0/video.js"></script>
