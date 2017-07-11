@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:prettyfaces="http://ocpsoft.com/prettyfaces" >
+	
+	<h:head>
+		<title>#{rawPage.title}</title>
+		
+		<link href="http://vjs.zencdn.net/6.2.0/video-js.css" rel="stylesheet"/>
+		<!-- If you'd like to support IE8 -->
+		<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+		
+		<script type="text/javascript">
+			function initPage(){
+				movie = document.getElementById('movie');
+				movie.controls = true;
+				movie.play();
+			}
+		</script>
+	</h:head>
+	
+	<h:body onload="initPage()">
+		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+			<p:panel header="#{rawPage.title}" styleClass="ui-noborder">
+				<video id="movie" src="#{rawPage.url}"
+					width="640" height="264" type="#{rawPage.mimeType}" >
+				</video>
+
+			<script src="http://vjs.zencdn.net/6.2.0/video.js"></script>
+		</p:panel>
+		</div>
+	</h:body>
+</html>
