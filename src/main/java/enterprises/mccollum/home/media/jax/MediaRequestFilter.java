@@ -21,17 +21,15 @@ public class MediaRequestFilter implements ContainerRequestFilter {
 	@Override
 	public void filter(ContainerRequestContext reCtx) throws IOException {
 		String path = reCtx.getUriInfo().getPath();
-		System.out.println("path: "+path);
 		if(!path.startsWith(RawMediaJax.PATH))
 			return;
-		String baseUrl = path.substring(0, path.indexOf("/", RawMediaJax.PATH.length()));
-		String realPath = path.substring(baseUrl.length());
+		String baseUrl = path.substring(0, path.indexOf("/", RawMediaJax.PATH.length()+1));
+		String realPath = path.substring(baseUrl.length()+1);
 		String encodedPath = pathCodec.encodePath(realPath);
 		try {
 			reCtx.setRequestUri(new URI(baseUrl+"/"+encodedPath));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		//reCtx.getHeaders().add("path", encodedPath);
 	}
 }
