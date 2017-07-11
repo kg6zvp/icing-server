@@ -26,7 +26,8 @@ public class RawPage{
 	
 	public String getTitle(){
 		String filePath = getParam("filePath");
-		return filePath.substring(filePath.lastIndexOf("/")+1);
+		String fileName = filePath.substring(filePath.lastIndexOf("/")+1);
+		return fileName.substring(0, fileName.lastIndexOf("."));
 	}
 	
 	public String getMimeType(){
