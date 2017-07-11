@@ -1,4 +1,4 @@
-package enterprises.mccollum.home.media;
+package enterprises.mccollum.home.media.jax;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
