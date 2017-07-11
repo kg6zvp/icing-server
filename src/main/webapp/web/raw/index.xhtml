@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:prettyfaces="http://ocpsoft.com/prettyfaces" >
+	
+	<h:head>
+		<link href="http://vjs.zencdn.net/6.2.0/video-js.css" rel="stylesheet"/>
+		<!-- If you'd like to support IE8 -->
+		<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+		
+		<title>#{rawPage.title}</title>
+	</h:head>
+	
+	<h:body>
+		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+			<p:panel header="Video" styleClass="ui-noborder">
+				<video id="my-video" class="video-js vjs-controls-enabled vjs-workinghover vjs-mux vjs-has-started vjs-user-inactive vjs-paused vjs-ended" preload="auto"
+					width="640" height="264" poster="http://i0.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg"
+					data-setup="{}">
+					<source src="#{rawPage.url}" type='#{rawPage.mimeType}'/>
+					<p class="vjs-no-js">
+						To view this video please enable JavaScript, and consider upgrading
+						to a web browser that <a
+							href="http://videojs.com/html5-video-support/" target="_blank">supports
+							HTML5 video</a>
+					</p>
+				</video>
+
+			<script src="http://vjs.zencdn.net/6.2.0/video.js"></script>
+		</p:panel>
+		</div>
+	</h:body>
+</html>
