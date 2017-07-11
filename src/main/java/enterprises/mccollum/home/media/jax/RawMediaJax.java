@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -41,6 +42,22 @@ public class RawMediaJax {
 	
 	@HeaderParam("Range")
 	String rangeHeader;
+	
+	@HEAD
+	@Path("{source}/{path}")
+	public Response getHead(@PathParam("source")String sourceName, @PathParam("path")String filePathEncoded){
+		String filePath = pathCodec.decodePath(filePathEncoded);
+		MediaSource src = new MediaSource();
+		src.setName(sourceName);
+		src = sources.getMatching(src).get(0);
+		
+		String fileExtention = filePath.substring(filePath.lastIndexOf(".")+1);
+
+		ResponseBuilder builder = Response.noContent();
+		return builder.header("Content-Type", MimeTypes.getInstance().getByExtension(fileExtention).getMimeType())
+					.header("Accept-Ranges", "bytes")
+					.build();
+	}
 	
 	@GET
 	@Path("{source}/{path}")
