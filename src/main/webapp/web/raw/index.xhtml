@@ -27,8 +27,8 @@
 	
 	<h:body onload="initPage()">
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-			<p:panel header="#{rawPage.title}" styleClass="ui-noborder">
-				<video id="movie" src="#{rawPage.url}" type="#{rawPage.mimeType}"
+			<p:panel header="#{rawPage.getTitle()}" styleClass="ui-noborder">
+				<video id="movie" src="#{rawPage.getUrl()}" type="#{rawPage.getMimeType()}"
 					width="640" height="264" preload='metadata' controls='' autoplay='' >
 				</video>
 
