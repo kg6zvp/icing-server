@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions" >
+
+<h:head>
+	<title>Source Viewer</title>
+</h:head>
+	<h:body>
+		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+			<p:dataTable id="sources" var="source" value="#{sourceView.sources}"> <!-- stickyHeader="true"> -->
+				<f:facet name="header"> Sources </f:facet>	
+				<p:column headerText="Name">
+					<h:outputLink value="edit/#{source.name}">"#{source.name}"</h:outputLink>	
+				</p:column>	
+				<p:column headerText="Type">
+					<h:outputText value="#{source.protocol}" />	
+				</p:column>
+				<p:column headerText="Host">
+					<h:outputText value="#{source.host}" />	
+				</p:column>
+				<p:column headerText="Base Path">
+					<h:outputText value="#{source.basePath}" />	
+				</p:column>	
+				<p:column headerText="Username">
+					<h:outputText value="#{source.username}" />	
+				</p:column>
+			</p:dataTable>
+		</div>
+	</h:body>
+</html>
