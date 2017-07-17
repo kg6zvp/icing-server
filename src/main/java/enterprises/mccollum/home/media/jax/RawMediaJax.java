@@ -47,9 +47,8 @@ public class RawMediaJax {
 	@Path("{source}/{path}")
 	public Response getHead(@PathParam("source")String sourceName, @PathParam("path")String filePathEncoded){
 		String filePath = pathCodec.decodePath(filePathEncoded);
-		MediaSource src = new MediaSource();
-		src.setName(sourceName);
-		src = sources.getMatching(src).get(0);
+		
+		MediaSource src = sources.getByName(sourceName);
 		
 		String fileExtention = filePath.substring(filePath.lastIndexOf(".")+1);
 
@@ -63,9 +62,8 @@ public class RawMediaJax {
 	@Path("{source}/{path}")
 	public Response getFile(@PathParam("source")String sourceName, @PathParam("path")String filePathEncoded){
 		String filePath = pathCodec.decodePath(filePathEncoded);
-		MediaSource src = new MediaSource();
-		src.setName(sourceName);
-		src = sources.getMatching(src).get(0);
+		
+		MediaSource src = sources.getByName(sourceName);
 		
 		String fileExtention = filePath.substring(filePath.lastIndexOf(".")+1);
 		

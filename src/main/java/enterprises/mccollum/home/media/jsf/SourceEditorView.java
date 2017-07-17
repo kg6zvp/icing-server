@@ -3,9 +3,11 @@ package enterprises.mccollum.home.media.jsf;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,21 +18,38 @@ import enterprises.mccollum.home.media.model.MediaSourceDao;
 //@ConversationScoped
 @RequestScoped
 @Stateful(passivationCapable=true)
-public class SourceEditor {
+public class SourceEditorView {
 	@Inject
 	MediaSourceDao mediaSources;
 	
 	MediaSource source;
 	Map<String, String> supportedProtocols;
 	
-	public SourceEditor(){
+	public SourceEditorView(){
 		supportedProtocols = new HashMap<>();
 		supportedProtocols.put("file", "file");
 		supportedProtocols.put("hdfs", "hdfs");
 		supportedProtocols.put("http", "http");
 		supportedProtocols.put("https", "https");
 		supportedProtocols.put("webdav", "webdav");
-		source = new MediaSource();
+	}
+	
+	@PostConstruct
+	public void init(){
+		String nameParam = getParam("name");
+		System.out.println(String.format("Name: %s", nameParam));
+		if(nameParam != null){
+			source = mediaSources.getByName(nameParam);
+		}else{
+			source = new MediaSource();
+		}
+	}
+	
+	public String getSourceName(){
+		if(source.getName() == null || source.getName().length() < 1){
+			return "New Source";
+		}
+		return source.getName();
 	}
 	
 	public String getUrlDisplay(){
@@ -68,5 +87,9 @@ public class SourceEditor {
 	public Map<String, String> getSupportedProtocols(){
 		//System.out.println("getSupportedProtocols()");
 		return supportedProtocols;
+	}
+
+	private String getParam(String param){
+		return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(param); /*.getSession(true)).getAttribute(param);*/
 	}
 }

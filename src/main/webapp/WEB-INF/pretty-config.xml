@@ -4,7 +4,12 @@
 								http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
 
 	<url-mapping>
-		<pattern value="/login" />
-		<view-id value="/login.xhtml" />
+		<pattern value="/web/sources/new" />
+		<view-id value="/web/sources/edit.xhtml" />
+	</url-mapping>
+
+	<url-mapping>
+		<pattern value="/web/sources/edit/#{name}" />
+		<view-id value="/web/sources/edit.xhtml" />
 	</url-mapping>
 </pretty-config>
