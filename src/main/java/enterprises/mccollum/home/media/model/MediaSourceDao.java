@@ -11,4 +11,11 @@ public class MediaSourceDao extends GenericPersistenceManager<MediaSource, Long>
 	public MediaSourceDao(){
 		super(MediaSource.class);
 	}
+
+	public MediaSource getByName(String sourceName) {
+		/*MediaSource src = new MediaSource();
+		src.setName(sourceName);
+		return getMatching(src).get(0);//*/
+		return em.createQuery("SELECT data FROM MediaSource data where data.name = :name", MediaSource.class).setParameter("name", sourceName).getSingleResult();
+	}
 }
