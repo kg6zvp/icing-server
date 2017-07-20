@@ -22,20 +22,20 @@ public class SourceView {
 	
 	@PostConstruct
 	public void init(){
-		System.out.println("Sources have been set up");
+		//System.out.println("Sources have been set up");
 		sources = mediaSources.getAll();
 	}
 	
 	public List<MediaSource> getSources(){
-		System.out.println("Ran Get Sources");
+		//System.out.println("Ran Get Sources");
 		return sources;
 	}
 	
 	public void delete(){
 		if(selectedSource == null){
-			System.out.println("No Deletion");
+			//System.out.println("No Deletion");
 		} else {
-			System.out.println("Deletion"+ selectedSource.getName());;
+			//System.out.println("Deletion"+ selectedSource.getName());;
 			mediaSources.remove(selectedSource);
 		}
 	}
