@@ -23,13 +23,15 @@
 				//movie.play();
 			}
 		</script>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</h:head>
 	
 	<h:body onload="initPage()">
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 			<p:panel header="#{rawPage.getTitle()}" styleClass="ui-noborder">
-				<video id="movie" src="#{rawPage.getUrl()}" type="#{rawPage.getMimeType()}"
-					width="640" height="264" preload='metadata' controls='' autoplay='' >
+				<video id="movie" src="#{request.contextPath}/#{rawPage.getUrl()}" type="#{rawPage.getMimeType()}"
+					width="100%" height="auto" preload='metadata' controls='' autoplay='' >
 				</video>
 
 			<script src="http://vjs.zencdn.net/6.2.0/video.js"></script>

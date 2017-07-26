@@ -38,7 +38,7 @@ public class RawPage{
 	
 	public String getUrl(){
 		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		return urlCtxUtils.getApplicationBaseUrl(req)+"/api/raw/"+getParam("source")+"/"+getParam("filePath");
+		return "api/raw/"+getParam("source")+"/"+getParam("filePath");
 	}
 	
 	private String getParam(String param){
