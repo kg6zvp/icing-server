@@ -40,7 +40,7 @@
 			<artifactId>commons-vfs2</artifactId>
 			<version>2.1</version>
 		</dependency>
-        <!-- SSH File Access - com.jcraft/jsch -->
+		<!-- SSH File Access - com.jcraft/jsch -->
 		<dependency>
 			<groupId>com.jcraft</groupId>
 			<artifactId>jsch</artifactId>
