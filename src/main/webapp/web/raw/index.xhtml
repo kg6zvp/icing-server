@@ -17,10 +17,57 @@
 		<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 		
 		<script type="text/javascript">
+			function toggleFullscreen(player){
+				if(player.fullScreen||player.webkitDisplayingFullscreen || player.mozFullScreen){
+					document.cancelFullScreen();
+					//alert('You are now windowed');
+				}else{
+					if(player.requestFullScreen){
+						player.requestFullScreen();
+					}else if(player.webkitRequestFullScreen){
+						player.webkitRequestFullScreen();
+					}else if(player.mozRequestFullScreen){
+						player.mozRequestFullScreen();
+					}else{
+						//boo hoo
+					}
+					//alert('You are now fullscreen');
+				}
+			}
+		
+			function playPause(player){
+				if(player.paused){
+					player.play();
+				}else{
+					player.pause();
+				}
+			}
+			
+			let player;
+			
+			function keypress(event){
+				switch(event.keyCode){
+					case 32: //spacebar
+						playPause(player);
+						break;
+					case 72: //h
+					case 104:
+						player.currentTime = player.currentTime-15;
+						break;
+					case 76: //l
+					case 108:
+						player.currentTime = player.currentTime+15;
+						break;
+					default:
+						console.log(event.keyCode);
+				}
+				player.setAttribute("controls","");
+			}
+			
 			function initPage(){
-				//movie = document.getElementById('movie');
-				//movie.controls = true;
-				//movie.play();
+				player = document.getElementById('movie');
+				document.cancelFullScreen = document.webkitExitFullscreen || document.mozCancelFullScreen || document.exitFullscreen;
+				document.body.onkeypress = keypress;
 			}
 		</script>
 		
@@ -30,8 +77,8 @@
 	<h:body onload="initPage()">
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 			<p:panel header="#{rawPage.getTitle()}" styleClass="ui-noborder">
-				<video id="movie" src="#{request.contextPath}/#{rawPage.getUrl()}" type="#{rawPage.getMimeType()}"
-					width="100%" height="auto" preload='metadata' controls='' autoplay='' >
+				<video onclick="playPause(this)" ondblclick="toggleFullscreen(this)" id="movie" src="#{rawPage.getUrl()}" type="#{rawPage.getMimeType()}"
+					width="100%" height="auto" preload='metadata' controls='' autoplay='' autofocus=''>
 				</video>
 
 			<script src="http://vjs.zencdn.net/6.2.0/video.js"></script>
