@@ -12,10 +12,6 @@
 	<h:head>
 		<title>#{rawPage.title}</title>
 		
-		<link href="http://vjs.zencdn.net/6.2.0/video-js.css" rel="stylesheet"/>
-		<!-- If you'd like to support IE8 -->
-		<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
-		
 		<script type="text/javascript">
 			function toggleFullscreen(player){
 				if(player.fullScreen||player.webkitDisplayingFullscreen || player.mozFullScreen){
@@ -80,9 +76,7 @@
 				<video onclick="playPause(this)" ondblclick="toggleFullscreen(this)" id="movie" src="#{rawPage.getUrl()}" type="#{rawPage.getMimeType()}"
 					width="100%" height="auto" preload='metadata' controls='' autoplay='' autofocus=''>
 				</video>
-
-			<script src="http://vjs.zencdn.net/6.2.0/video.js"></script>
-		</p:panel>
+			</p:panel>
 		</div>
 	</h:body>
 </html>
