@@ -10,7 +10,7 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.ext.Provider;
 
-import enterprises.mccollum.home.media.model.FilePathCodec;
+import enterprises.mccollum.home.media.control.FilePathCodec;
 
 @Provider
 @PreMatching

@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-import enterprises.mccollum.home.media.model.FilePathCodec;
+import enterprises.mccollum.home.media.control.FilePathCodec;
 
 @WebFilter(RawJsfFilter.RAW_URL)
 public class RawJsfFilter implements Filter {

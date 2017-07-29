@@ -1,4 +1,4 @@
-package enterprises.mccollum.home.media.model;
+package enterprises.mccollum.home.media.control;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

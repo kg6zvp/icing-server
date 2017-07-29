@@ -21,7 +21,7 @@ import org.apache.commons.vfs2.util.RandomAccessMode;
 
 import com.github.amr.mimetypes.MimeTypes;
 
-import enterprises.mccollum.home.media.model.FilePathCodec;
+import enterprises.mccollum.home.media.control.FilePathCodec;
 import enterprises.mccollum.home.media.model.MediaSource;
 import enterprises.mccollum.home.media.model.MediaSourceDao;
 
