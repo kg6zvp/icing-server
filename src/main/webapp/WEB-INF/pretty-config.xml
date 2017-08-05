@@ -12,4 +12,14 @@
 		<pattern value="/web/sources/edit/#{name}" />
 		<view-id value="/web/sources/edit.xhtml" />
 	</url-mapping>
+	
+	<url-mapping>
+		<pattern value="/web/sources/browse/#{source}" />
+		<view-id value="/web/sources/browse/index.xhtml" />	
+	</url-mapping>
+	
+	<url-mapping>
+		<pattern value="/web/raw/#{source}" />
+		<view-id value="/web/raw/index.xhtml"/>
+	</url-mapping>
 </pretty-config>

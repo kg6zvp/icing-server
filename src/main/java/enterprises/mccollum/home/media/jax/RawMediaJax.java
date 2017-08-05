@@ -24,6 +24,7 @@ import com.github.amr.mimetypes.MimeTypes;
 import enterprises.mccollum.home.media.control.FilePathCodec;
 import enterprises.mccollum.home.media.model.MediaSource;
 import enterprises.mccollum.home.media.model.MediaSourceDao;
+import static enterprises.mccollum.home.media.control.MediaFileUtils.getMimeTypeByFilePath;
 
 /**
  * Provides raw access to files
@@ -50,10 +51,8 @@ public class RawMediaJax {
 		
 		MediaSource src = sources.getByName(sourceName);
 		
-		String fileExtention = filePath.substring(filePath.lastIndexOf(".")+1);
-
 		ResponseBuilder builder = Response.noContent();
-		return builder.header("Content-Type", MimeTypes.getInstance().getByExtension(fileExtention).getMimeType())
+		return builder.header("Content-Type", getMimeTypeByFilePath(filePath))
 					.header("Accept-Ranges", "bytes")
 					.build();
 	}
@@ -64,8 +63,6 @@ public class RawMediaJax {
 		String filePath = pathCodec.decodePath(filePathEncoded);
 		
 		MediaSource src = sources.getByName(sourceName);
-		
-		String fileExtention = filePath.substring(filePath.lastIndexOf(".")+1);
 		
 		try {
 			ResponseBuilder builder = null;
@@ -80,7 +77,7 @@ public class RawMediaJax {
 				builder = Response.ok(fContents.getInputStream())
 								.header("Content-Length", file.getSize()-parseRangeIgnoreEnd());
 			}
-			return builder.header("Content-Type", MimeTypes.getInstance().getByExtension(fileExtention).getMimeType())
+			return builder.header("Content-Type", getMimeTypeByFilePath(filePath))
 						.header("Accept-Ranges", "bytes")
 						.build();
 		} catch (FileSystemException e) {
