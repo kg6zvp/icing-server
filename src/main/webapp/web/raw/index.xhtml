@@ -29,6 +29,9 @@
 				<video id="movie" src="#{rawPage.getUrl()}" type="#{rawPage.getMimeType()}"
 					width="100%" height="auto" preload='metadata' controls='' autoplay='' autofocus=''>
 				</video>
+					Looks like your browser doesn't support #{rawPage.getMimeType()} files natively. Falling back to VLC plugin instead<br/>
+					<embed type="application/x-vlc-plugin" pluginspage="http://www.videolan.org"
+							width="100%" height="auto" target="#{rawPage.getUrl()}" />
 			</p:panel>
 		</div>
 	</h:body>
