@@ -32,6 +32,13 @@ public class MediaSource {
 	String password;
 	String basePath;
 	
+	public static enum Type{
+		MOVIES,
+		TV_SHOWS
+	};
+	
+	Type type;
+	
 	public MediaSource(){}
 	
 	/**
@@ -134,7 +141,13 @@ public class MediaSource {
 			this.basePath = basePath;
 		}
 	}
-	
+	public Type getType() {
+		return type;
+	}
+	public void setType(Type type) {
+		this.type = type;
+	}
+
 	@SuppressWarnings("unused")
 	private void logf(String format, Object...args) {
 		Logger.getLogger(MediaSource.class.getSimpleName()).log(Level.INFO, String.format(format, args));

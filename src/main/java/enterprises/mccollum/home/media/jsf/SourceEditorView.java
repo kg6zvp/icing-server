@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
-import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -15,7 +14,6 @@ import enterprises.mccollum.home.media.model.MediaSource;
 import enterprises.mccollum.home.media.model.MediaSourceDao;
 
 @Named
-//@ConversationScoped
 @RequestScoped
 @Stateful(passivationCapable=true)
 public class SourceEditorView {
@@ -23,15 +21,12 @@ public class SourceEditorView {
 	MediaSourceDao mediaSources;
 	
 	MediaSource source;
-	Map<String, String> supportedProtocols;
+	final Map<String, MediaSource.Type> sourceTypes;
 	
 	public SourceEditorView(){
-		supportedProtocols = new HashMap<>();
-		supportedProtocols.put("file", "file");
-		supportedProtocols.put("hdfs", "hdfs");
-		supportedProtocols.put("http", "http");
-		supportedProtocols.put("https", "https");
-		supportedProtocols.put("webdav", "webdav");
+		sourceTypes = new HashMap<>();
+		sourceTypes.put("Movies", MediaSource.Type.MOVIES);
+		sourceTypes.put("TV Shows", MediaSource.Type.TV_SHOWS);
 	}
 	
 	@PostConstruct
@@ -84,9 +79,8 @@ public class SourceEditorView {
 		this.source = source;
 	}
 	
-	public Map<String, String> getSupportedProtocols(){
-		//System.out.println("getSupportedProtocols()");
-		return supportedProtocols;
+	public Map<String, MediaSource.Type> getSourceTypes(){
+		return sourceTypes;
 	}
 
 	private String getParam(String param){

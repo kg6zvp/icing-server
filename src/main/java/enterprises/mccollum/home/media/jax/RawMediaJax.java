@@ -1,7 +1,6 @@
 package enterprises.mccollum.home.media.jax;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -12,14 +11,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
-
-import org.apache.commons.vfs2.FileContent;
-import org.apache.commons.vfs2.FileSystemException;
-import org.apache.commons.vfs2.RandomAccessContent;
-import org.apache.commons.vfs2.VFS;
-import org.apache.commons.vfs2.util.RandomAccessMode;
-
-import com.github.amr.mimetypes.MimeTypes;
 
 import enterprises.mccollum.home.media.control.FilePathCodec;
 import enterprises.mccollum.home.media.model.MediaSource;
@@ -64,28 +55,14 @@ public class RawMediaJax {
 		
 		MediaSource src = sources.getByName(sourceName);
 		
-		try {
-			ResponseBuilder builder = null;
-			if(src.getProtocol().equals("file")){
-				File f = new File(src.getBasePath()+"/"+filePath);
-				builder = Response.ok(f)
-								.header("Content-Length", f.length()-parseRangeIgnoreEnd());
-			}else{
-				FileContent file = VFS.getManager().resolveFile(src.getCompleteUrl()+"/"+filePath).getContent();
-				RandomAccessContent fContents = file.getRandomAccessContent(RandomAccessMode.READ);
-				fContents.seek(parseRangeIgnoreEnd());
-				builder = Response.ok(fContents.getInputStream())
-								.header("Content-Length", file.getSize()-parseRangeIgnoreEnd());
-			}
-			return builder.header("Content-Type", getMimeTypeByFilePath(filePath))
-						.header("Accept-Ranges", "bytes")
-						.build();
-		} catch (FileSystemException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return Response.status(Status.NOT_FOUND).build();
+		File f = new File(src.getBasePath()+"/"+filePath);
+		if(!f.exists())
+			return Response.status(Status.NOT_FOUND).build();
+		return Response.ok(f)
+					.header("Content-Length", f.length()-parseRangeIgnoreEnd())
+					.header("Content-Type", getMimeTypeByFilePath(filePath))
+					.header("Accept-Ranges", "bytes")
+					.build();
 	}
 	
 	private long parseRangeIgnoreEnd(){
