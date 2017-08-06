@@ -32,9 +32,19 @@ public class MediaSource {
 	String password;
 	String basePath;
 	
-	public static enum Type{
-		MOVIES,
-		TV_SHOWS
+	public static enum Type {
+		MOVIES("enum.MediaSource.Type.MOVIES"),
+		TV_SHOWS("enum.MediaSource.Type.TV_SHOWS");
+		
+		String key;
+		
+		Type(String key) {
+			this.key = key;
+		}
+		
+		public String getKey() {
+			return key;
+		}
 	};
 	
 	Type type;

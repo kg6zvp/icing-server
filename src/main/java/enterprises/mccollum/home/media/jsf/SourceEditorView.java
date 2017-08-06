@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import enterprises.mccollum.home.media.model.MediaSource;
+import enterprises.mccollum.home.media.model.MediaSource.Type;
 import enterprises.mccollum.home.media.model.MediaSourceDao;
 
 @Named
@@ -21,12 +22,12 @@ public class SourceEditorView {
 	MediaSourceDao mediaSources;
 	
 	MediaSource source;
-	final Map<String, MediaSource.Type> sourceTypes;
+	final Map<MediaSource.Type, MediaSource.Type> sourceTypes;
 	
 	public SourceEditorView(){
 		sourceTypes = new HashMap<>();
-		sourceTypes.put("Movies", MediaSource.Type.MOVIES);
-		sourceTypes.put("TV Shows", MediaSource.Type.TV_SHOWS);
+		sourceTypes.put(Type.MOVIES, MediaSource.Type.MOVIES);
+		sourceTypes.put(Type.TV_SHOWS, MediaSource.Type.TV_SHOWS);
 	}
 	
 	@PostConstruct
@@ -79,7 +80,7 @@ public class SourceEditorView {
 		this.source = source;
 	}
 	
-	public Map<String, MediaSource.Type> getSourceTypes(){
+	public Map<MediaSource.Type, MediaSource.Type> getSourceTypes(){
 		return sourceTypes;
 	}
 
