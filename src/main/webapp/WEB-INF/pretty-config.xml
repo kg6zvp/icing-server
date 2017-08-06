@@ -9,12 +9,12 @@
 	</url-mapping>
 
 	<url-mapping>
-		<pattern value="/web/sources/edit/#{name}" />
+		<pattern value="/web/sources/#{name}/edit" />
 		<view-id value="/web/sources/edit.xhtml" />
 	</url-mapping>
 	
 	<url-mapping>
-		<pattern value="/web/sources/browse/#{source}" />
+		<pattern value="/web/sources/#{source}/browse" />
 		<view-id value="/web/sources/browse/index.xhtml" />	
 	</url-mapping>
 	

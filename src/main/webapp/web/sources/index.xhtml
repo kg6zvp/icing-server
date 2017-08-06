@@ -18,10 +18,10 @@
 			<p:dataTable id="DtSources" var="source" value="#{sourceView.sources}" selection="#{sourceView.selectedSource}" selectionMode="single" scrollable="true" resizableColumns="true" rowKey="#{source.id}"> <!-- stickyHeader="true"> -->
 				<f:facet name="header"> Sources </f:facet>	
 				<p:column headerText="Name">
-					<h:outputLink value="browse/#{source.name}">#{source.name}</h:outputLink>
+					<h:outputLink value="#{source.name}/browse">#{source.name}</h:outputLink>
 				</p:column>
 				<p:column>
-					<p:button target="_blank" href="edit/#{source.name}" value="Edit" />
+					<p:button target="_blank" href="#{source.name}/edit" value="Edit" />
 				</p:column>
 				<p:column headerText="Type">
 					<h:outputText value="#{source.type}" />	
