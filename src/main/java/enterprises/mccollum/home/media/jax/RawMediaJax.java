@@ -41,6 +41,9 @@ public class RawMediaJax {
 		String filePath = pathCodec.decodePath(filePathEncoded);
 		
 		MediaSource src = sources.getByName(sourceName);
+		File f = new File(src.getBasePath()+"/"+filePath);
+		if(!f.exists())
+			return Response.status(Status.NOT_FOUND).build();
 		
 		ResponseBuilder builder = Response.noContent();
 		return builder.header("Content-Type", getMimeTypeByFilePath(filePath))
