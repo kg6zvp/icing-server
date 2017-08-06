@@ -19,14 +19,13 @@
 					<p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
 						<p:outputLabel value="Name" /> <p:inputText value="#{sourceEditorView.source.name}" />
 						<p:outputLabel value="Type" />
-						<p:selectOneMenu id="protocol" value="#{sourceEditorView.source.protocol}" editable="true">
-            				<f:selectItem itemLabel="Choose Protocol" itemValue="" />
-            				<f:selectItems value="#{sourceEditorView.supportedProtocols}" />
+						<p:selectOneMenu id="type" value="#{sourceEditorView.source.type}" >
+            				<f:selectItems value="#{sourceEditorView.getSourceTypes()}" /> <!-- var="type" itemLabel="#{msg[type.key]}" /> -->
         				</p:selectOneMenu>
-						<p:outputLabel value="Host" /><p:inputText value="#{sourceEditorView.source.host}" />
 						<p:outputLabel value="Base Path" /><p:inputText value="#{sourceEditorView.source.basePath}" />
+						<!-- <p:outputLabel value="Host" /><p:inputText value="#{sourceEditorView.source.host}" />
 						<p:outputLabel value="Username" /><p:inputText value="#{sourceEditorView.source.username}" />
-						<p:outputLabel value="Password" /><p:password value="#{sourceEditorView.source.password}" />
+						<p:outputLabel value="Password" /><p:password value="#{sourceEditorView.source.password}" /> -->
 					</p:panelGrid>
 					<div align="left">
 						<p:commandButton id="updateBtn" value="Preview" update="urldisplay" />					

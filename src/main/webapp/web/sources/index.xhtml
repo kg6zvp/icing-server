@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
@@ -14,37 +14,37 @@
 </h:head>
 	<h:body>
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-		<h:form id="formSources">
-			<p:dataTable id="DtSources" var="source" value="#{sourceView.sources}" selection="#{sourceView.selectedSource}" selectionMode="single" scrollable="true" resizableColumns="true" rowKey="#{source.id}"> <!-- stickyHeader="true"> -->
-				<f:facet name="header"> Sources </f:facet>	
-				<p:column headerText="Name">
-					<h:outputLink value="browse/#{source.name}">#{source.name}</h:outputLink>
-				</p:column>
-				<p:column>
-					<p:button target="_blank" href="edit/#{source.name}" value="Edit" />
-				</p:column>
-				<p:column headerText="Type">
-					<h:outputText value="#{source.protocol}" />	
-				</p:column>
-				<p:column headerText="Host">
-					<h:outputText value="#{source.host}" />	
-				</p:column>
-				<p:column headerText="Base Path">	
-					<h:outputText value="#{source.basePath}" />	
-				</p:column>	
-				<p:column headerText="Username">
-					<h:outputText value="#{source.username}" />	
-				</p:column>
-				<p:ajax event="rowSelect" listener="#{sourceView.selectedSource}"  update="DtSources"/>
-				<p:column style="text-align: center">
-					<p:commandButton title="Delete" icon="ui-icon-trash" update="@all" action="#{sourceView.delete()}" onConfirmComplete="@all "> 
-						<f:setPropertyActionListener value="#{source}" target="#{sourceView.selectedSource}" />
-					</p:commandButton>
-				</p:column>	
-				<f:facet name="footer">
-					<h:button value="New" outcome="edit"/>
-				</f:facet>
-			</p:dataTable>
+			<h:form id="formSources">
+				<p:dataTable id="DtSources" var="source" value="#{sourceView.sources}" selection="#{sourceView.selectedSource}" selectionMode="single" scrollable="true" resizableColumns="true" rowKey="#{source.id}"> <!-- stickyHeader="true"> -->
+					<f:facet name="header"> Sources </f:facet>	
+					<p:column headerText="Name">
+						<h:outputLink value="#{source.name}/browse">#{source.name}</h:outputLink>
+					</p:column>
+					<p:column>
+						<p:button target="_blank" href="#{source.name}/edit" value="Edit" />
+					</p:column>
+					<p:column headerText="Type">
+						<h:outputText value="#{source.type}" /> <!-- value="#{msg[source.type.key]}" /> -->
+					</p:column>
+					<p:column headerText="Host">
+						<h:outputText value="#{source.host}" />	
+					</p:column>
+					<p:column headerText="Base Path">	
+						<h:outputText value="#{source.basePath}" />	
+					</p:column>	
+					<p:column headerText="Username">
+						<h:outputText value="#{source.username}" />	
+					</p:column>
+					<p:ajax event="rowSelect" listener="#{sourceView.selectedSource}"  update="DtSources"/>
+					<p:column style="text-align: center">
+						<p:commandButton title="Delete" icon="ui-icon-trash" update="DtSources" action="#{sourceView.delete()}" onConfirmComplete="@all "> 
+							<f:setPropertyActionListener value="#{source}" target="#{sourceView.selectedSource}" />
+						</p:commandButton>
+					</p:column>	
+					<f:facet name="footer">
+						<h:button value="New" outcome="edit"/>
+					</f:facet>
+				</p:dataTable>
 			</h:form>
 		</div>
 	</h:body>
