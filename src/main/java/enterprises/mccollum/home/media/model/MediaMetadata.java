@@ -4,142 +4,117 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MediaMetadata {
 
-	protected Integer voteCount;
-	protected Integer id;
-	protected Boolean video;
-	protected Integer voteAverage;
-	protected String title;
-	protected Double popularity;
-	protected String posterPath;
-	protected String originalLanguage;
-	protected String originalTitle;
-	protected List<Integer> genreIds = null;
-	protected String backdropPath;
-	protected Boolean adult;
-	protected String overview;
-	protected String releaseDate;
-	protected Map<String, Object> additionalProperties = new HashMap<String, Object>();
+	Integer vote_count;
+	Long id;
+	Boolean video;
+	Integer vote_average;
+	String title;
+	Double popularity;
+	String poster_path;
+	String original_language;
+	String original_title;
+	List<Integer> genre_ids = null;
+	String backdrop_path;
+	Boolean adult;
+	String overview;
+	String release_date;
+	//Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-	public Integer getVoteCount() {
-		return voteCount;
+	public Integer getVote_count() {
+		return vote_count;
 	}
-
-	public void setVoteCount(Integer voteCount) {
-		this.voteCount = voteCount;
+	public void setVote_count(Integer voteCount) {
+		this.vote_count = voteCount;
 	}
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Boolean isVideo() {
+	public Boolean getVideo() {
 		return video;
 	}
-
 	public void setVideo(Boolean video) {
 		this.video = video;
 	}
-
-	public Integer getVoteAverage() {
-		return voteAverage;
+	public Integer getVote_average() {
+		return vote_average;
 	}
-
-	public void setVoteAverage(Integer voteAverage) {
-		this.voteAverage = voteAverage;
+	public void setVote_average(Integer vote_average) {
+		this.vote_average = vote_average;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public Double getPopularity() {
 		return popularity;
 	}
-
 	public void setPopularity(Double popularity) {
 		this.popularity = popularity;
 	}
-
-	public String getPosterPath() {
-		return posterPath;
+	public String getPoster_path() {
+		return poster_path;
 	}
-
-	public void setPosterPath(String posterPath) {
-		this.posterPath = posterPath;
+	public void setPoster_path(String posterPath) {
+		this.poster_path = posterPath;
 	}
-
-	public String getOriginalLanguage() {
-		return originalLanguage;
+	public String getOriginal_language() {
+		return original_language;
 	}
-
-	public void setOriginalLanguage(String originalLanguage) {
-		this.originalLanguage = originalLanguage;
+	public void setOriginal_language(String original_language) {
+		this.original_language = original_language;
 	}
-
-	public String getOriginalTitle() {
-		return originalTitle;
+	public String getOriginal_title() {
+		return original_title;
 	}
-
-	public void setOriginalTitle(String originalTitle) {
-		this.originalTitle = originalTitle;
+	public void setOriginal_title(String original_title) {
+		this.original_title = original_title;
 	}
-
-	public List<Integer> getGenreIds() {
-		return genreIds;
+	public List<Integer> getGenre_ids() {
+		return genre_ids;
 	}
-
-	public void setGenreIds(List<Integer> genreIds) {
-		this.genreIds = genreIds;
+	public void setGenre_ids(List<Integer> genre_ids) {
+		this.genre_ids = genre_ids;
 	}
-
-	public String getBackdropPath() {
-		return backdropPath;
+	public String getBackdrop_path() {
+		return backdrop_path;
 	}
-
-	public void setBackdropPath(String backdropPath) {
-		this.backdropPath = backdropPath;
+	public void setBackdrop_path(String backdrop_path) {
+		this.backdrop_path = backdrop_path;
 	}
-
 	public Boolean getAdult() {
 		return adult;
 	}
-
 	public void setAdult(Boolean adult) {
 		this.adult = adult;
 	}
-
 	public String getOverview() {
 		return overview;
 	}
-
 	public void setOverview(String overview) {
 		this.overview = overview;
 	}
-
-	public String getReleaseDate() {
-		return releaseDate;
+	public String getRelease_date() {
+		return release_date;
+	}
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
 	}
 
-	public void setReleaseDate(String releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-
-	public Map<String, Object> getAdditionalProperties() {
-		return this.additionalProperties;
-	}
-
-	public void setAdditionalProperty(String name, Object value) {
-		this.additionalProperties.put(name, value);
-	}
-
+//	public Map<String, Object> getAdditionalProperties() {
+//		return this.additionalProperties;
+//	}
+//
+//	public void setAdditionalProperty(String name, Object value) {
+//		this.additionalProperties.put(name, value);
+//	}
 }

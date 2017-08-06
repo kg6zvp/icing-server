@@ -17,6 +17,8 @@ import javax.inject.Named;
 
 import enterprises.mccollum.home.media.control.FileIndexingService;
 
+import static enterprises.mccollum.home.media.jsf.FacesUtils.getParam;
+
 @Named
 //@ConversationScoped
 @RequestScoped
@@ -51,10 +53,6 @@ public class FileIndexView {
 			}
 		}
 		return videoFiles;
-	}
-
-	private String getParam(String paramName){
-		return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(paramName);
 	}
 	
 	public String getSourceName(){
