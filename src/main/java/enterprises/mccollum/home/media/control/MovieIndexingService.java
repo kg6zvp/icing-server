@@ -18,7 +18,7 @@ public class MovieIndexingService {
 	FileIndexingService fileIndexer;
 
 	@Inject
-	TheMoviedbAPIClient movieDb;
+	MovieSearchService movieSearchService;
 	
 	@Inject
 	MediaSourceDao sources;
@@ -32,18 +32,11 @@ public class MovieIndexingService {
 		Map<String, String> files = fileIndexer.search(src);
 		List<Movie> movies = new LinkedList<Movie>();
 		for(String filePath : files.keySet()) {
-				List<MediaMetadata> results = movieDb.searchMovies(getName(filePath), null);
-				if(results.size() > 1) {
-					Logger.getLogger(getClass().getSimpleName()).log(Level.WARNING, String.format("Found %d results for %s: %s", results.size(), src.getName(), filePath));
-				} else if(results.size() < 1) {
-					Logger.getLogger(getClass().getSimpleName()).log(Level.WARNING, String.format("Couldn't find any results for %s: %s", src.getName(), filePath));
-				} else {
-					Movie movie = new Movie();
-					movie.setMetaData(results.get(0));
-					movie.setFilePath(filePath);
-					movie.setSource(src);
-					movies.add(movie);
-				}
+			List<MediaMetadata> results = movieSearchService.searchMovie(filePath);
+			if(!results.isEmpty()) {
+				Movie movie = new Movie(src, filePath, results.get(0));
+				movies.add(movie);
+			}
 		}
 		return movies;
 	}

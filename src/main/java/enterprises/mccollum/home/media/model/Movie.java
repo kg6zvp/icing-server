@@ -8,6 +8,12 @@ public class Movie {
 	String filePath;
 	MediaMetadata metaData;
 	
+	public Movie(MediaSource source, String filePath, MediaMetadata metaData) {
+		this.source = source;
+		this.filePath = filePath;
+		this.metaData = metaData;
+	}
+	
 	public MediaSource getSource() {
 		return source;
 	}
