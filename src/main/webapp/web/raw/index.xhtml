@@ -75,8 +75,18 @@
 				this.showControls();
 			}
 			
-			function initPage(){
-				let player = document.getElementById('movie');
+			function mouseStopped(){
+				this.style.cursor = 'none';
+			}
+			
+			function onMouseMove(){
+				this.style.cursor = null;
+				clearTimeout(this.cursorMoveTimer);
+				this.cursorMoveTimer = setTimeout(mouseStopped.bind(this), 1500);
+			}
+			
+			function initPlayer(movieId){
+				let player = document.getElementById(movieId);
 				player.playPause = playPause.bind(player);
 				player.toggleFullscreen = toggleFullscreen.bind(player);
 				player.handleKeyPress = handleKeyPress.bind(player);
@@ -86,9 +96,8 @@
 				player.onclick = player.playPause;
 				player.ondblclick = player.toggleFullscreen;
 				player.onkeypress = player.handleKeyPress;
-				player.onmousemove = player.onMouseMove;
+				player.onmousemove = onMouseMove.bind(player);
 				document.body.onkeypress = player.handleKeyPress;
-				//player.focus();
 				document.cancelFullScreen = document.webkitExitFullscreen || document.mozCancelFullScreen || document.exitFullscreen;
 			}
 		</script>
@@ -96,7 +105,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</h:head>
 	
-	<h:body onload="initPage()">
+	<h:body onload="initPlayer('movie')">
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 			<p:panel header="#{rawPage.getTitle()}" styleClass="ui-noborder">
 				<video id="movie" src="#{rawPage.getUrl()}" type="#{rawPage.getMimeType()}"
