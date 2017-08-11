@@ -16,9 +16,9 @@ import enterprises.mccollum.home.media.model.Movie;
 public class MovieIndexingService {
 	@Inject
 	FileIndexingService fileIndexer;
-
+	
 	@Inject
-	TheMoviedbAPIClient movieDb;
+	MovieSearchService movieSearch;
 	
 	@Inject
 	MediaSourceDao sources;
@@ -32,7 +32,7 @@ public class MovieIndexingService {
 		Map<String, String> files = fileIndexer.search(src);
 		List<Movie> movies = new LinkedList<Movie>();
 		for(String filePath : files.keySet()) {
-				List<MediaMetadata> results = movieDb.searchMovies(getName(filePath), null);
+				List<MediaMetadata> results = movieSearch.searchMovies(filePath);
 				if(results.size() > 1) {
 					Logger.getLogger(getClass().getSimpleName()).log(Level.WARNING, String.format("Found %d results for %s: %s", results.size(), src.getName(), filePath));
 				} else if(results.size() < 1) {
@@ -46,10 +46,6 @@ public class MovieIndexingService {
 				}
 		}
 		return movies;
-	}
-	
-	private String getName(String filePath) {
-		return filePath.substring(filePath.lastIndexOf('/'), filePath.lastIndexOf('.'));
 	}
 
 	/**
