@@ -23,7 +23,11 @@ public class MovieSearchService {
 	}
 
 	private String getFileName(String filePath) {
-		return filePath.substring(filePath.lastIndexOf('/')+1, filePath.lastIndexOf('.'));
+		int fileNameBeginning = filePath.lastIndexOf('/')+1;
+		int extensionLocation = filePath.lastIndexOf('.');
+		if(extensionLocation > fileNameBeginning) //Check whether file has an extension
+			return filePath.substring(fileNameBeginning, extensionLocation);
+		return filePath.substring(fileNameBeginning);
 	}
 	
 	private String getTitle(String fileName) {
@@ -47,5 +51,4 @@ public class MovieSearchService {
 	private boolean hasYear(String fileName) {
 		return fileName.matches(TITLE_YEAR_REGEX);
 	}
-	
 }
