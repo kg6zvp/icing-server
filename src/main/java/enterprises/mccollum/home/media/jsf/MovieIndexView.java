@@ -1,6 +1,5 @@
 package enterprises.mccollum.home.media.jsf;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -14,8 +13,6 @@ import enterprises.mccollum.home.media.model.Movie;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Named
 @RequestScoped
