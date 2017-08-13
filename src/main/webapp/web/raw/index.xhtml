@@ -12,100 +12,18 @@
 	<h:head>
 		<title>#{rawPage.title}</title>
 		
-		<script type="text/javascript">
-			function toggleFullscreen(){
-				if(this.fullScreen||this.webkitDisplayingFullscreen || this.mozFullScreen){
-					document.cancelFullScreen();
-				}else{
-					if(this.requestFullScreen){
-						this.requestFullScreen();
-					}else if(this.webkitRequestFullScreen){
-						this.webkitRequestFullScreen();
-					}else if(this.mozRequestFullScreen){
-						this.mozRequestFullScreen();
-					}else{
-						//boo hoo
-					}
-				}
-			}
+		<script src="#{request.contextPath}/IcingPlayer.js" />
 		
-			function playPause(){
-				console.log(this);
-				if(this.paused){
-					this.play();
-				}else{
-					this.pause();
-				}
-			}
-			
-			function showControls(){
-				this.setAttribute("controls","");
-			}
-			
-			function toggleMute(){
-				if(this.muted){
-					this.muted = false;
-				}else{
-					this.muted = true;
-				}
-			}
-			
-			function handleKeyPress(event){
-				switch(event.keyCode){
-					case 32: //spacebar: play/pause
-						this.playPause();
-						break;
-					case 72: //h: jump back 15 seconds
-					case 104:
-						this.currentTime = this.currentTime-15;
-						break;
-					case 76: //l: jump ahead 15 seconds
-					case 108:
-						this.currentTime = this.currentTime+15;
-						break;
-					case 102: //f: fullscreen
-						this.toggleFullscreen();
-						break;
-					case 109: //m: mute/unmute
-						this.toggleMute();
-						break;
-					default:
-						console.log(event.keyCode);
-				}
-				this.showControls();
-			}
-			
-			function mouseStopped(){
-				this.style.cursor = 'none';
-			}
-			
-			function onMouseMove(){
-				this.style.cursor = null;
-				clearTimeout(this.cursorMoveTimer);
-				this.cursorMoveTimer = setTimeout(mouseStopped.bind(this), 1500);
-			}
-			
-			function initPlayer(movieId){
-				let player = document.getElementById(movieId);
-				player.playPause = playPause.bind(player);
-				player.toggleFullscreen = toggleFullscreen.bind(player);
-				player.handleKeyPress = handleKeyPress.bind(player);
-				player.showControls = showControls.bind(player);
-				player.toggleMute = toggleMute.bind(player);
-				
-				player.onclick = player.playPause;
-				player.ondblclick = player.toggleFullscreen;
-				player.onkeypress = player.handleKeyPress;
-				player.onmousemove = onMouseMove.bind(player);
-				document.body.onkeypress = player.handleKeyPress;
-				document.cancelFullScreen = document.webkitExitFullscreen || document.mozCancelFullScreen || document.exitFullscreen;
+		<script type="text/javascript">
+			function init(){
+				new IcingPlayer('movie');
 			}
 		</script>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</h:head>
 	
-	<h:body onload="initPlayer('movie')">
+	<h:body onload="init()">
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 			<p:panel header="#{rawPage.getTitle()}" styleClass="ui-noborder">
 				<video id="movie" src="#{rawPage.getUrl()}" type="#{rawPage.getMimeType()}"
