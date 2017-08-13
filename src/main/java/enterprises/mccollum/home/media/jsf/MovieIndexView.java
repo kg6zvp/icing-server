@@ -28,17 +28,15 @@ public class MovieIndexView {
 	MediaSourceDao sources;
 	
 	List<Movie> movies;
-	
-	@PostConstruct
-	public void init() {
-		movies = new LinkedList<Movie>();
-		for(MediaSource src : sources.getAll()) {
-			if(src.getType() == Type.MOVIES)
-				movies.addAll(movieService.doIndex(src));
-		}
-	}
 
 	public List<Movie> getMoviesList(){
+		if(movies == null) {
+			movies = new LinkedList<Movie>();
+			for(MediaSource src : sources.getAll()) {
+				if(src.getType() == Type.MOVIES)
+					movies.addAll(movieService.doIndex(src));
+			}
+		}
 		return movies;
 	}
 	public MovieIndexingService getMovieService() {
