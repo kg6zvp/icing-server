@@ -4,8 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Lob;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Embeddable
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MediaMetadata {
 
@@ -18,9 +22,11 @@ public class MediaMetadata {
 	String poster_path;
 	String original_language;
 	String original_title;
-	List<Integer> genre_ids = null;
+	//List<Integer> genre_ids = null;
 	String backdrop_path;
 	Boolean adult;
+	
+	@Lob
 	String overview;
 	String release_date;
 	//Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -79,12 +85,12 @@ public class MediaMetadata {
 	public void setOriginal_title(String original_title) {
 		this.original_title = original_title;
 	}
-	public List<Integer> getGenre_ids() {
-		return genre_ids;
-	}
-	public void setGenre_ids(List<Integer> genre_ids) {
-		this.genre_ids = genre_ids;
-	}
+//	public List<Integer> getGenre_ids() {
+//		return genre_ids;
+//	}
+//	public void setGenre_ids(List<Integer> genre_ids) {
+//		this.genre_ids = genre_ids;
+//	}
 	public String getBackdrop_path() {
 		return backdrop_path;
 	}

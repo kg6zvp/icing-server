@@ -1,5 +1,7 @@
 package enterprises.mccollum.home.media.model;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -7,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -31,6 +35,10 @@ public class MediaSource {
 	String username;
 	String password;
 	String basePath;
+	
+	@OneToMany
+	@PrimaryKeyJoinColumn
+	List<Movie> movies;
 	
 	public static enum Type {
 		MOVIES("enum.MediaSource.Type.MOVIES"),
@@ -156,6 +164,14 @@ public class MediaSource {
 	}
 	public void setType(Type type) {
 		this.type = type;
+	}
+	public List<Movie> getMovies(){
+		if(movies == null)
+			movies = new LinkedList<>();
+		return movies;
+	}
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
 	}
 
 	@SuppressWarnings("unused")
