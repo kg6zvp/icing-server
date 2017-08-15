@@ -13,6 +13,7 @@
 		<title>Movies</title>
 	</h:head>
 	<h:body>
+		<p:commandButton action="#{movieIndexView.reIndex()}" value="Refresh" />
 		<h:form id="form">
 			<p:dataGrid var="movie" value="#{movieIndexView.getMoviesList()}" columns="3" layout="grid"
 				paginator="false" id="movies">

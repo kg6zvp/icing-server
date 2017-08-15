@@ -19,7 +19,7 @@ import java.util.List;
 @Stateful(passivationCapable=true)
 public class MovieIndexView {
 	@Inject
-	MovieIndexingService movieService;
+	MovieIndexingService movieIndexingService;
 	
 	@Inject
 	MediaSourceDao sources;
@@ -31,15 +31,16 @@ public class MovieIndexView {
 			movies = new LinkedList<Movie>();
 			for(MediaSource src : sources.getAll()) {
 				if(src.getType() == Type.MOVIES)
-					movies.addAll(movieService.doIndex(src));
+					movies.addAll(src.getMovies());
 			}
 		}
 		return movies;
 	}
-	public MovieIndexingService getMovieService() {
-		return movieService;
-	}
-	public void setMovieService(MovieIndexingService movieService) {
-		this.movieService = movieService;
+	
+	public void reIndex() {
+		for(MediaSource src : sources.getAll()) {
+			if(src.getType() == Type.MOVIES)
+				movieIndexingService.doIndex(src);
+		}
 	}
 }
