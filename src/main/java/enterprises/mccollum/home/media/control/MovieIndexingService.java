@@ -41,6 +41,7 @@ public class MovieIndexingService {
 			if(!files.containsKey(src.getMovies().get(i).getFilePath())) {
 				movies.remove(src.getMovies().get(i));
 				src.getMovies().remove(i);
+				--i;
 			}
 		}
 		
@@ -53,17 +54,26 @@ public class MovieIndexingService {
 				List<MediaMetadata> results = movieSearch.searchMovies(filePath);
 				if(results.size() < 1) {
 					Logger.getLogger(getClass().getSimpleName()).log(Level.WARNING, String.format("Couldn't find any results for %s: %s", src.getName(), filePath));
-				} else if(results.size() > 1) {
-					Logger.getLogger(getClass().getSimpleName()).log(Level.WARNING, String.format("Found %d results for %s: %s", results.size(), src.getName(), filePath));
 				} else {
+					Logger.getLogger(getClass().getSimpleName()).log(Level.WARNING, String.format("Found %d results for %s: %s", results.size(), src.getName(), filePath));
 					Movie movie = new Movie();
-					movie.setMetaData(results.get(0));
+					searchResults: for(MediaMetadata currentMetadata : results) {
+						if((currentMetadata.getTitle() != null
+								&& currentMetadata.getPoster_path() != null
+								&& currentMetadata.getOverview() != null) || results.size() == 1) {
+							movie.setMetaData(currentMetadata);
+							break searchResults;
+						}
+					}
 					movie.setFilePath(filePath);
-					movie = movies.persist(movie);
-					movie.setSource(src);
-					movie = movies.save(movie);
-					src.getMovies().add(movie);
-					sources.save(src);
+					System.out.println(movie.toString());
+					if(!movies.containsKey(movie.getId())) { //make sure we don't already have one of this movie in the database
+						movie = movies.persist(movie);
+						movie.setSource(src);
+						movie = movies.save(movie);
+						src.getMovies().add(movie);
+						sources.save(src);
+					}
 				}
 			}
 		}
