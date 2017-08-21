@@ -1,4 +1,4 @@
-package enterprises.mccollum.home.media.control;
+package enterprises.mccollum.home.themoviedb;
 
 import java.util.List;
 import java.util.logging.Level;
