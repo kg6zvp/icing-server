@@ -7,29 +7,22 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions"
+	xmlns:icing="http://mccollum.enterprises/jsf/media/icing"
 	xmlns:prettyfaces="http://ocpsoft.com/prettyfaces" >
 	
 	<h:head>
 		<title>#{rawPage.title}</title>
-		
-		<script src="#{request.contextPath}/IcingPlayer.js" />
-		
-		<script type="text/javascript">
-			function init(){
-				new IcingPlayer('movie');
-			}
-		</script>
-		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</h:head>
 	
-	<h:body onload="init()">
+	<h:body>
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-			<p:panel header="#{rawPage.getTitle()}" styleClass="ui-noborder">
-				<video id="movie" src="#{rawPage.getUrl()}" type="#{rawPage.getMimeType()}"
-					width="100%" height="auto" preload='metadata' controls='' autoplay='' autofocus=''>
-				</video>
-			</p:panel>
+			<icing:video
+				id="video"
+				title="#{rawPage.getTitle()}"
+				videoUrl="#{rawPage.getUrl()}"
+				mimeType="#{rawPage.getMimeType()}"
+			/>
 		</div>
 	</h:body>
 </html>
