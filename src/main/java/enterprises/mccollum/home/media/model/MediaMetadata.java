@@ -115,6 +115,12 @@ public class MediaMetadata {
 	public void setRelease_date(String release_date) {
 		this.release_date = release_date;
 	}
+	
+	public String getYear() {
+		if(release_date == null)
+			return null;
+		return release_date.split("-")[0];
+	}
 
 //	public Map<String, Object> getAdditionalProperties() {
 //		return this.additionalProperties;
