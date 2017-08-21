@@ -26,6 +26,8 @@ import enterprises.mccollum.home.media.model.MediaSourceDao;
 import enterprises.mccollum.home.media.model.Movie;
 import enterprises.mccollum.home.media.model.MovieDao;
 
+import static enterprises.mccollum.utils.genericentityejb.DaoMocker.mockPersistenceManager;
+
 @RunWith(MockitoJUnitRunner.class)
 public class MovieIndexingServiceTest {
 	@Mock
@@ -48,19 +50,7 @@ public class MovieIndexingServiceTest {
 	
 	@Before
 	public void setupTests() {
-		when(movies.persist(any(Movie.class))).then(new Answer<Movie>() {
-			@Override
-			public Movie answer(InvocationOnMock arg0) {
-				return (Movie) arg0.getArguments()[0];
-			}
-		});
-		
-		when(movies.save(any(Movie.class))).then(new Answer<Movie>() {
-			@Override
-			public Movie answer(InvocationOnMock arg0) {
-				return (Movie) arg0.getArguments()[0];
-			}
-		});
+		mockPersistenceManager(movies, Movie.class);
 	}
 	
 	/**

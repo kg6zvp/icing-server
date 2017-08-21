@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import enterprises.mccollum.home.media.control.MovieSearchService;
-import enterprises.mccollum.home.media.control.TheMoviedbAPIClient;
+import enterprises.mccollum.home.themoviedb.TheMoviedbAPIClient;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MovieSearchServiceTest {

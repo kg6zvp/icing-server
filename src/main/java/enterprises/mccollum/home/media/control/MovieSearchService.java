@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import enterprises.mccollum.home.media.model.MediaMetadata;
+import enterprises.mccollum.home.themoviedb.TheMoviedbAPIClient;
 
 public class MovieSearchService {
 	@Inject
