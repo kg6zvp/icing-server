@@ -21,15 +21,13 @@
 				<f:facet name="header">
 					Movies
 				</f:facet>
-				
-				<p:panel header="#{movie.metaData.title}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:100%">
-						<h:outputLink target="_blank" value="#{request.contextPath}/web/raw/#{movie.source.name}?filePath=#{movie.getEncodedFilePath()}"><img src="https://image.tmdb.org/t/p/w185/#{movie.metaData.poster_path}"/></h:outputLink>
-		 
-						<!-- <h:outputLink target="_blank" value="#{request.contextPath}/web/raw/#{movie.source.name}?filePath=#{movie.getEncodedFilePath()}"><h:outputText value="#{movie.metaData.title}" /></h:outputLink> -->
-					</h:panelGrid>
-				</p:panel>
-		 
+				<h:outputLink target="_blank" value="#{request.contextPath}/web/raw/#{movie.source.name}?filePath=#{movie.getEncodedFilePath()}">			
+					<p:panel header="#{movie.metaData.title} (#{movie.metaData.getYear()})" style="text-align:center">
+						<h:panelGrid columns="1" style="width:100%">
+							<img src="https://image.tmdb.org/t/p/w185/#{movie.metaData.poster_path}"/>
+						</h:panelGrid>
+					</p:panel>
+		 		</h:outputLink>
 			</p:dataGrid>
 		</h:form>
 	</h:body>
