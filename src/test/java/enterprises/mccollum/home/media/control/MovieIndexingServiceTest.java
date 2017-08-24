@@ -20,10 +20,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import enterprises.mccollum.home.media.control.MovieIndexingService;
-import enterprises.mccollum.home.media.model.MediaMetadata;
+import enterprises.mccollum.home.media.model.MovieMetadata;
 import enterprises.mccollum.home.media.model.MediaSource;
 import enterprises.mccollum.home.media.model.MediaSourceDao;
-import enterprises.mccollum.home.media.model.Movie;
+import enterprises.mccollum.home.media.model.MovieFile;
 import enterprises.mccollum.home.media.model.MovieDao;
 
 import static enterprises.mccollum.utils.genericentityejb.DaoMocker.mockPersistenceManager;
@@ -46,11 +46,11 @@ public class MovieIndexingServiceTest {
 	MovieIndexingService movieIndexingSvc;
 	
 	@Captor
-	ArgumentCaptor<Movie> movieCaptor;
+	ArgumentCaptor<MovieFile> movieCaptor;
 	
 	@Before
 	public void setupTests() {
-		mockPersistenceManager(movies, Movie.class);
+		mockPersistenceManager(movies, MovieFile.class);
 	}
 	
 	/**
@@ -66,18 +66,18 @@ public class MovieIndexingServiceTest {
 		
 		when(movieIndexingSvc.fileIndexer.search(any(MediaSource.class))).thenReturn(files);
 		
-		MediaMetadata a = new MediaMetadata();
+		MovieMetadata a = new MovieMetadata();
 		a.setId(0L);
 		a.setTitle("cool story");
 		a.setOverview("and they all lived happily ever after");
 		a.setPoster_path("480p.jpg");
-		MediaMetadata b = new MediaMetadata();
+		MovieMetadata b = new MovieMetadata();
 		b.setId(1L);
 		b.setTitle(null);
 		b.setOverview(null);
 		b.setPoster_path(null);
 
-		List<MediaMetadata> searchResults = new LinkedList<>();
+		List<MovieMetadata> searchResults = new LinkedList<>();
 		searchResults.add(a);
 		searchResults.add(b);
 		
@@ -91,6 +91,6 @@ public class MovieIndexingServiceTest {
 		
 		verify(movieIndexingSvc.movies).persist(movieCaptor.capture());
 		
-		assertEquals(a.getId(), movieCaptor.getValue().getId());
+		assertEquals(a.getId(), movieCaptor.getValue().getMetaData().getId());
 	}
 }

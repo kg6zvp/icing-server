@@ -38,7 +38,7 @@ public class MediaSource {
 	
 	@OneToMany
 	@PrimaryKeyJoinColumn
-	List<Movie> movies;
+	List<MovieFile> movieFiles;
 	
 	public static enum Type {
 		MOVIES("enum.MediaSource.Type.MOVIES"),
@@ -165,13 +165,13 @@ public class MediaSource {
 	public void setType(Type type) {
 		this.type = type;
 	}
-	public List<Movie> getMovies(){
-		if(movies == null)
-			movies = new LinkedList<>();
-		return movies;
+	public List<MovieFile> getMovies(){
+		if(movieFiles == null)
+			movieFiles = new LinkedList<>();
+		return movieFiles;
 	}
-	public void setMovies(List<Movie> movies) {
-		this.movies = movies;
+	public void setMovies(List<MovieFile> movieFiles) {
+		this.movieFiles = movieFiles;
 	}
 
 	@SuppressWarnings("unused")

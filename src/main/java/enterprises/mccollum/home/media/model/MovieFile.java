@@ -4,20 +4,25 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-public class Movie {
+public class MovieFile {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	Long movieId;
 	
 	@ManyToOne
 	MediaSource source;
 	String filePath;
-	MediaMetadata metaData;
+	
+	MovieMetadata metaData;
 	
 	public Long getId() {
 		return movieId;
@@ -46,11 +51,10 @@ public class Movie {
 	public void setFilePath(String relPath) {
 		this.filePath = relPath;
 	}
-	public MediaMetadata getMetaData() {
+	public MovieMetadata getMetaData() {
 		return metaData;
 	}
-	public void setMetaData(MediaMetadata data) {
+	public void setMetaData(MovieMetadata data) {
 		this.metaData = data;
-		this.movieId = metaData.getId();
 	}
 }

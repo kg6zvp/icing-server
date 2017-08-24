@@ -12,7 +12,7 @@ public class MediaSearchResultContainer {
 	Integer page;
 	Integer total_results;
 	Integer total_pages;
-	List<MediaMetadata> results = null;
+	List<MovieMetadata> results = null;
 	//Map<String, Object> additionalProperties = new HashMap<String, Object>();
 	
 	public Integer getPage() {
@@ -33,10 +33,10 @@ public class MediaSearchResultContainer {
 	public void setTotal_pages(Integer total_pages) {
 		this.total_pages = total_pages;
 	}
-	public List<MediaMetadata> getResults() {
+	public List<MovieMetadata> getResults() {
 		return results;
 	}
-	public void setResults(List<MediaMetadata> results) {
+	public void setResults(List<MovieMetadata> results) {
 		this.results = results;
 	}
 
