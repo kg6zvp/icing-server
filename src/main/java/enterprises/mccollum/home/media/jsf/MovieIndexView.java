@@ -9,7 +9,7 @@ import enterprises.mccollum.home.media.control.MovieIndexingService;
 import enterprises.mccollum.home.media.model.MediaSource;
 import enterprises.mccollum.home.media.model.MediaSource.Type;
 import enterprises.mccollum.home.media.model.MediaSourceDao;
-import enterprises.mccollum.home.media.model.Movie;
+import enterprises.mccollum.home.media.model.MovieFile;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,11 +24,11 @@ public class MovieIndexView {
 	@Inject
 	MediaSourceDao sources;
 	
-	List<Movie> movies;
+	List<MovieFile> movies;
 
-	public List<Movie> getMoviesList(){
+	public List<MovieFile> getMoviesList(){
 		if(movies == null) {
-			movies = new LinkedList<Movie>();
+			movies = new LinkedList<MovieFile>();
 			for(MediaSource src : sources.getAll()) {
 				if(src.getType() == Type.MOVIES)
 					movies.addAll(src.getMovies());
