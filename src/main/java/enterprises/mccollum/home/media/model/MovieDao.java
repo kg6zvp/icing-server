@@ -7,8 +7,8 @@ import enterprises.mccollum.utils.genericentityejb.GenericPersistenceManager;
 
 @Local
 @Stateless
-public class MovieDao extends GenericPersistenceManager<Movie, Long> {
+public class MovieDao extends GenericPersistenceManager<MovieFile, Long> {
 	public MovieDao() {
-		super(Movie.class);
+		super(MovieFile.class);
 	}
 }
