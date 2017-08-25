@@ -10,11 +10,15 @@
 
 <h:head>
 	<title>Icing</title>
-	<meta http-equiv="Refresh" content="0; URL=web/" />
 </h:head>
 	<h:body>
 		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 			Welcome to Icing
+			<br/>
+			<br/>
+			<h:outputLink value="library/movies/">My Movies (#{dashboardView.getMovies().size()})</h:outputLink>
+			<br/>
+			<h:outputLink value="sources/">Manage Sources (#{dashboardView.getSources().size()})</h:outputLink>
 		</div>
 	</h:body>
 </html>
