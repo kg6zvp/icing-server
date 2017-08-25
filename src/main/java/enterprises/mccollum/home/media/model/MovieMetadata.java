@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Embeddable
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MediaMetadata {
+public class MovieMetadata {
 
 	Integer vote_count;
 	Long id;

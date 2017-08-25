@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import enterprises.mccollum.home.media.model.MediaMetadata;
+import enterprises.mccollum.home.media.model.MovieMetadata;
 import enterprises.mccollum.home.themoviedb.TheMoviedbAPIClient;
 
 public class MovieSearchService {
@@ -16,9 +16,9 @@ public class MovieSearchService {
 	/**
 	 * Parse and Search file path of movie in the movieDb
 	 * @param filePath the full file path of the movie 
-	 * @return List<{@link MediaMetadata} of all result from MovieDb
+	 * @return List<{@link MovieMetadata} of all result from MovieDb
 	 */
-	public List<MediaMetadata> searchMovies(String filePath) {
+	public List<MovieMetadata> searchMovies(String filePath) {
 		String fileName = getFileName(filePath);
 		return movieDb.searchMovies(getTitle(fileName), getYear(fileName));
 	}
