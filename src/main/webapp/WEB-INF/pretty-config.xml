@@ -22,4 +22,9 @@
 		<pattern value="/web/raw/#{source}" />
 		<view-id value="/web/raw/index.xhtml"/>
 	</url-mapping>
+	
+	<url-mapping>
+		<pattern value="/web/library/movies/#{movie}" />
+		<view-id value="/web/library/movies/view.xhtml"/>
+	</url-mapping>
 </pretty-config>

@@ -66,14 +66,13 @@ public class MovieIndexingService {
 						}
 					}
 					movieFile.setFilePath(filePath);
-					System.out.println(movieFile.toString());
-					if(!movies.containsKey(movieFile.getId())) { //make sure we don't already have one of this movie in the database
-						movieFile = movies.persist(movieFile);
-						movieFile.setSource(src);
-						movieFile = movies.save(movieFile);
-						src.getMovies().add(movieFile);
-						sources.save(src);
-					}
+					movieFile.setMimeType(files.get(filePath));
+					
+					movieFile = movies.persist(movieFile);
+					movieFile.setSource(src);
+					movieFile = movies.save(movieFile);
+					src.getMovies().add(movieFile);
+					sources.save(src);
 				}
 			}
 		}
