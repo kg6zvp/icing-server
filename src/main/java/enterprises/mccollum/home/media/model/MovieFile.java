@@ -22,6 +22,8 @@ public class MovieFile {
 	MediaSource source;
 	String filePath;
 	
+	String mimeType;
+	
 	MovieMetadata metaData;
 	
 	public Long getId() {
@@ -56,5 +58,11 @@ public class MovieFile {
 	}
 	public void setMetaData(MovieMetadata data) {
 		this.metaData = data;
+	}
+	public void setMimeType(String mimeType) {
+		this.mimeType = mimeType;
+	}
+	public String getMimeType() {
+		return mimeType;
 	}
 }

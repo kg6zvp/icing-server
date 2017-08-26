@@ -21,7 +21,7 @@
 				<f:facet name="header">
 					Movies
 				</f:facet>
-				<h:outputLink target="_blank" value="#{request.contextPath}/web/raw/#{movie.source.name}?filePath=#{movie.getEncodedFilePath()}">			
+				<h:outputLink target="_blank" value="#{request.contextPath}/web/library/movies/#{movie.id}">			
 					<p:panel header="#{movie.metaData.title} (#{movie.metaData.getYear()})" style="text-align:center">
 						<h:panelGrid columns="1" style="width:100%">
 							<img src="https://image.tmdb.org/t/p/w185/#{movie.metaData.poster_path}"/>
