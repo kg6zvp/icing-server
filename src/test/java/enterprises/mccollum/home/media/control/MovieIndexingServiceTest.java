@@ -92,5 +92,10 @@ public class MovieIndexingServiceTest {
 		verify(movieIndexingSvc.movies).persist(movieCaptor.capture());
 		
 		assertEquals(a.getId(), movieCaptor.getValue().getMetaData().getId());
+		assertSame("Expected mime type is the same", "video/x-matroska",
+				movieCaptor.getValue().getMimeType());
+		assertSame("Expected file paty is the same", "favorite movie ever.mkv",
+				movieCaptor.getValue().getFilePath());
+		assertSame("a", movieCaptor.getValue().getSource().getName());
 	}
 }
