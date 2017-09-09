@@ -16,7 +16,7 @@ public class MovieMetadata {
 	Integer vote_count;
 	Long id;
 	Boolean video;
-	Integer vote_average;
+	Double vote_average;
 	String title;
 	Double popularity;
 	String poster_path;
@@ -49,10 +49,10 @@ public class MovieMetadata {
 	public void setVideo(Boolean video) {
 		this.video = video;
 	}
-	public Integer getVote_average() {
+	public Double getVote_average() {
 		return vote_average;
 	}
-	public void setVote_average(Integer vote_average) {
+	public void setVote_average(Double vote_average) {
 		this.vote_average = vote_average;
 	}
 	public String getTitle() {

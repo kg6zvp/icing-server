@@ -1,8 +1,13 @@
 package enterprises.mccollum.home.media.control;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
+
+import org.apache.commons.text.similarity.LevenshteinDistance;
 
 import enterprises.mccollum.home.media.model.MovieMetadata;
 import enterprises.mccollum.home.themoviedb.TheMoviedbAPIClient;
@@ -10,6 +15,8 @@ import enterprises.mccollum.home.themoviedb.TheMoviedbAPIClient;
 public class MovieSearchService {
 	@Inject
 	TheMoviedbAPIClient movieDb;
+	
+	LevenshteinDistance lDistance = new LevenshteinDistance();
 
 	public static final String TITLE_YEAR_REGEX = ".* \\([0-9][0-9][0-9][0-9]\\)";
 	
@@ -20,7 +27,18 @@ public class MovieSearchService {
 	 */
 	public List<MovieMetadata> searchMovies(String filePath) {
 		String fileName = getFileName(filePath);
-		return movieDb.searchMovies(getTitle(fileName), getYear(fileName));
+		String title = getTitle(fileName);
+		List<MovieMetadata> results = movieDb.searchMovies(title, getYear(fileName));
+		Collections.sort(results, (a, b) ->
+				lDistance.apply(title, a.getTitle())
+					.compareTo(lDistance.apply(title, b.getTitle())
+		));
+		
+		/*for(MovieMetadata m : results) {
+			Logger.getLogger("MovieSearchService").log(Level.WARNING,
+			m.getTitle() + ": " + lDistance.apply(title, m.getTitle()));
+		}//*/
+		return results;
 	}
 
 	private String getFileName(String filePath) {

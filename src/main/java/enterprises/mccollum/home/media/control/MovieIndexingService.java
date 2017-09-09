@@ -57,6 +57,7 @@ public class MovieIndexingService {
 				} else {
 					Logger.getLogger(getClass().getSimpleName()).log(Level.WARNING, String.format("Found %d results for %s: %s", results.size(), src.getName(), filePath));
 					MovieFile movieFile = new MovieFile();
+					
 					searchResults: for(MovieMetadata currentMetadata : results) {
 						if((currentMetadata.getTitle() != null
 								&& currentMetadata.getPoster_path() != null
@@ -65,6 +66,7 @@ public class MovieIndexingService {
 							break searchResults;
 						}
 					}
+					
 					movieFile.setFilePath(filePath);
 					movieFile.setMimeType(files.get(filePath));
 					
