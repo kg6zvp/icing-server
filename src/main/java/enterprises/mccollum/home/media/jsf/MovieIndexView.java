@@ -11,6 +11,7 @@ import enterprises.mccollum.home.media.model.MediaSource.Type;
 import enterprises.mccollum.home.media.model.MediaSourceDao;
 import enterprises.mccollum.home.media.model.MovieFile;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class MovieIndexView {
 	@Inject
 	MediaSourceDao sources;
 	
-	List<MovieFile> movies;
+	List<MovieFile> movies = null;
 
 	public List<MovieFile> getMoviesList(){
 		if(movies == null) {
@@ -33,6 +34,7 @@ public class MovieIndexView {
 				if(src.getType() == Type.MOVIES)
 					movies.addAll(src.getMovies());
 			}
+			Collections.sort(movies, (ma, mb) -> ma.getMetaData().getSortTitle().compareTo(mb.getMetaData().getSortTitle()));
 		}
 		return movies;
 	}

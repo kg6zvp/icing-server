@@ -121,6 +121,12 @@ public class MovieMetadata {
 			return null;
 		return release_date.split("-")[0];
 	}
+	public String getSortTitle() { //only works for English, needs to be replaced with a generic sorting aspect that's language-agnostic
+		if(getTitle().toLowerCase().startsWith("the ")) {
+			return getTitle().substring(3).trim();
+		}
+		return getTitle();
+	}
 
 //	public Map<String, Object> getAdditionalProperties() {
 //		return this.additionalProperties;
