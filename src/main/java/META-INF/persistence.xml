@@ -3,6 +3,7 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<!-- A persistence unit is a group of related classes, typically referencing each other and inside one relational database -->
 	<persistence-unit name="media">
+		<jta-data-source>java:/icing-media</jta-data-source>
 		<!-- These are the extra configuration parameters for a specific JPA implementation -->
 		<properties>
 			<!-- This property is telling Hibernate (the JPA implementation built into Wildfly and JBoss; google 'hibernate jpa' and 'java jpa' for more info) to automatically create all the proper tables for the @Entity classes in this project and those @Entity classes specified in class directives inside the database or to update the existing database schema to accommodate changes to the classes -->
