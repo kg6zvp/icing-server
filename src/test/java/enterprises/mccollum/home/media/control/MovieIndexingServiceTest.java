@@ -15,9 +15,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
 
 import enterprises.mccollum.home.media.control.MovieIndexingService;
 import enterprises.mccollum.home.media.model.MovieMetadata;
@@ -83,11 +81,7 @@ public class MovieIndexingServiceTest {
 		
 		when(movieIndexingSvc.movieSearch.searchMovies("favorite movie ever.mkv")).thenReturn(searchResults);
 		
-		
-		
 		movieIndexingSvc.doIndex(source);
-		
-		
 		
 		verify(movieIndexingSvc.movies).persist(movieCaptor.capture());
 		
