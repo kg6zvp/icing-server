@@ -8,17 +8,19 @@
 	xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions" >
 
-<h:head>
-	<title>Icing</title>
-</h:head>
-	<h:body>
-		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-			Welcome to Icing
-			<br/>
-			<br/>
-			<h:outputLink value="library/movies/">My Movies (#{dashboardView.getMovies().size()})</h:outputLink>
-			<br/>
-			<h:outputLink value="sources/">Manage Sources (#{dashboardView.getSources().size()})</h:outputLink>
-		</div>
-	</h:body>
+	<ui:composition template="/site.xhtml">
+		<ui:define name="head">
+			<title>Icing</title>
+		</ui:define>
+		<ui:define name="content">
+			<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+				Welcome to Icing
+				<br/>
+				<br/>
+				<h:outputLink value="library/movies/">My Movies (#{dashboardView.getMovies().size()})</h:outputLink>
+				<br/>
+				<h:outputLink value="sources/">Manage Sources (#{dashboardView.getSources().size()})</h:outputLink>
+			</div>
+		</ui:define>
+	</ui:composition>
 </html>

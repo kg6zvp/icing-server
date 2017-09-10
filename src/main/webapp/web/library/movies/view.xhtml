@@ -9,18 +9,19 @@
 	xmlns:icing="http://mccollum.enterprises/jsf/media/icing"
 	xmlns:of="http://omnifaces.org/functions" >
 
-	<h:head>
-		<title>#{movieView.getTitle()}</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	</h:head>
-	<h:body>
-		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-			<icing:video
-				id="#{movieView.id}"
-				title="#{movieView.getTitle()}"
-				videoUrl="#{movieView.getUrl()}"
-				mimeType="#{movieView.getMimeType()}"
-			/>
-		</div>
-	</h:body>
+	<ui:composition template="/site.xhtml">
+		<ui:define name="head">
+			<title>#{movieView.getTitle()}</title>
+		</ui:define>
+		<ui:define name="content">
+			<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+				<icing:video
+					id="#{movieView.id}"
+					title="#{movieView.getTitle()}"
+					videoUrl="#{movieView.getUrl()}"
+					mimeType="#{movieView.getMimeType()}"
+				/>
+			</div>
+		</ui:define>
+	</ui:composition>
 </html>

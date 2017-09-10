@@ -9,34 +9,36 @@
 	xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions" >
 
-<h:head>
-	<title>#{sourceEditorView.getSourceName()}</title>
-</h:head>
-	<h:body>
-		<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-			<o:form id="media_source_form">
-				<p:panel header="Source" styleClass="ui-noborder">
-					<p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
-						<p:outputLabel value="Name" /> <p:inputText value="#{sourceEditorView.source.name}" />
-						<p:outputLabel value="Type" />
-						<p:selectOneMenu id="type" value="#{sourceEditorView.source.type}" >
-            				<f:selectItems value="#{sourceEditorView.getSourceTypes()}" /> <!-- var="type" itemLabel="#{msg[type.key]}" /> -->
-        				</p:selectOneMenu>
-						<p:outputLabel value="Base Path" /><p:inputText value="#{sourceEditorView.source.basePath}" />
-						<!-- <p:outputLabel value="Host" /><p:inputText value="#{sourceEditorView.source.host}" />
-						<p:outputLabel value="Username" /><p:inputText value="#{sourceEditorView.source.username}" />
-						<p:outputLabel value="Password" /><p:password value="#{sourceEditorView.source.password}" /> -->
-					</p:panelGrid>
-					<div align="left">
-						<p:commandButton id="updateBtn" value="Preview" update="urldisplay" />					
-					</div>
-					<div align="right">
-						<p:commandButton id="saveButton" value="Save" actionListener="#{sourceEditorView.save()}" update="urldisplay" />
-					</div>
-					<p:outputLabel id="urldisplay" value="#{sourceEditorView.urlDisplay}" />
-				</p:panel>
-				<p:blockUI animate="true" trigger="saveButton updateBtn" block="@form" />
-			</o:form>
-		</div>
-	</h:body>
+	<ui:composition template="/site.xhtml">
+		<ui:define name="head">
+			<title>#{sourceEditorView.getSourceName()}</title>
+		</ui:define>
+		<ui:define name="content">
+			<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+				<o:form id="media_source_form">
+					<p:panel header="Source" styleClass="ui-noborder">
+						<p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
+							<p:outputLabel value="Name" /> <p:inputText value="#{sourceEditorView.source.name}" />
+							<p:outputLabel value="Type" />
+							<p:selectOneMenu id="type" value="#{sourceEditorView.source.type}" >
+								<f:selectItems value="#{sourceEditorView.getSourceTypes()}" /> <!-- var="type" itemLabel="#{msg[type.key]}" /> -->
+							</p:selectOneMenu>
+							<p:outputLabel value="Base Path" /><p:inputText value="#{sourceEditorView.source.basePath}" />
+							<!-- <p:outputLabel value="Host" /><p:inputText value="#{sourceEditorView.source.host}" />
+							<p:outputLabel value="Username" /><p:inputText value="#{sourceEditorView.source.username}" />
+							<p:outputLabel value="Password" /><p:password value="#{sourceEditorView.source.password}" /> -->
+						</p:panelGrid>
+						<div align="left">
+							<p:commandButton id="updateBtn" value="Preview" update="urldisplay" />					
+						</div>
+						<div align="right">
+							<p:commandButton id="saveButton" value="Save" actionListener="#{sourceEditorView.save()}" update="urldisplay" />
+						</div>
+						<p:outputLabel id="urldisplay" value="#{sourceEditorView.urlDisplay}" />
+					</p:panel>
+					<p:blockUI animate="true" trigger="saveButton updateBtn" block="@form" />
+				</o:form>
+			</div>
+		</ui:define>
+	</ui:composition>
 </html>
