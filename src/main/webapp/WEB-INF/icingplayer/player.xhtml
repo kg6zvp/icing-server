@@ -11,7 +11,7 @@
 			<h:outputScript name="IcingPlayer.js" />
 			<script type="text/javascript">
 				$(function(){ //run this anonymous function when the page loads
-					new IcingPlayer("#{id}");
+					new IcingPlayer("#{id}", "#{remoteControl.getId()}");
 				});
 			</script>
 			
