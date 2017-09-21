@@ -4,11 +4,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import enterprises.mccollum.home.media.model.MediaSource;
+import enterprises.mccollum.home.media.model.MovieFile;
 
-@Path("/sources")
+@Path("/movies")
 @Produces(MediaType.APPLICATION_JSON)
-public class SourceJax extends CrudJax<MediaSource, Long> {
+public class MovieJax extends CrudJax<MovieFile, Long> {
 	@Override
 	Long stringToId(String id) {
 		return Long.valueOf(id);

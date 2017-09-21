@@ -1,6 +1,9 @@
 package enterprises.mccollum.home.media.jax;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HEAD;
@@ -18,8 +21,13 @@ public abstract class CrudJax<T, K> {
 	GenericPersistenceManager<T, K> dao;
 	
 	@GET
+	@Transactional
 	public Response getAll(){
-		return Response.ok(dao.getAll()).build();
+		return Response.ok(
+				new ResponseWrapper<T>(
+						dao.getAll()
+						)
+				).build();
 	}
 	
 	@PUT
@@ -44,6 +52,7 @@ public abstract class CrudJax<T, K> {
 	
 	@GET
 	@Path("{id}")
+	@Transactional
 	public Response get(@PathParam("id")String id){
 		T data = dao.get(stringToId(id));
 		if(data == null)
@@ -70,4 +79,27 @@ public abstract class CrudJax<T, K> {
 	}
 	
 	abstract K stringToId(String id);
+	
+	public static class ResponseWrapper<W>{
+		int size;
+		List<W> data;
+		
+		public ResponseWrapper(List<W> data) {
+			this.size = (data == null ? 0 : data.size());
+			this.data = data;
+		}
+
+		public int getSize() {
+			return size;
+		}
+		public void setSize(int size) {
+			this.size = size;
+		}
+		public List<W> getData() {
+			return data;
+		}
+		public void setData(List<W> data) {
+			this.data = data;
+		}
+	}
 }
