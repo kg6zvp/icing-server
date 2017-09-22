@@ -11,7 +11,7 @@ import static enterprises.mccollum.home.media.jsf.FacesUtils.getParam;
 @RequestScoped
 public class RemoteControl {
 	public String getId() {
-		String id = getParam("session_id");
+		String id = getParam("rc_id");
 		if(id != null)
 			return id;
 		return UUID.randomUUID().toString();

@@ -164,7 +164,7 @@ class IcingPlayer {
 				break;
 			case 86: //v: display session id
 			case 118:
-				alert('Send this link to a friend so they can join in: '+window.location.href+'?session_id='+this.rcId);
+				alert('Send this link to a friend so they can join in: '+window.location.href+'?rc_id='+this.rcId);
 				break;
 			default:
 				console.log(event.keyCode);
