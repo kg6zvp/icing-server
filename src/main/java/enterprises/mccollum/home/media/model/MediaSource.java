@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Intended to represent a location on the filesystem containing media
  * 
@@ -63,6 +65,7 @@ public class MediaSource {
 	 * Get url suitable for use by apache commons vfs
 	 * @return
 	 */
+	@JsonIgnore
 	public String getCompleteUrl(){
 		StringBuilder sb = new StringBuilder(str(protocol) ? protocol+"://" : "");
 		if(str(username)){
@@ -80,7 +83,10 @@ public class MediaSource {
 		if(str(basePath)){
 			sb.append(basePath);
 		}
-		return sb.toString();
+		String val = sb.toString();
+		if(str(val))
+			return val;
+		return null;
 	}
 	
 	public Long getId() {
@@ -120,7 +126,9 @@ public class MediaSource {
 		return host;
 	}
 	public void setHost(String host) {
-		if(host.startsWith("/")){
+		if(!str(host)){
+			this.host = host;
+		}else if(host.startsWith("/")){
 			setHost(host.substring(1, host.length()));
 		}else if(host.endsWith("/")){
 			setHost(host.substring(0, host.length()-1));
@@ -144,7 +152,9 @@ public class MediaSource {
 		return basePath;
 	}
 	public void setBasePath(String basePath) {
-		if(basePath.endsWith("/")){
+		if(!str(basePath)){
+			this.basePath = basePath;
+		}else if(basePath.endsWith("/")){
 			//logf("Called set base path with ending slash: %s", basePath);
 			basePath = basePath.substring(0, basePath.length()-1);
 			setBasePath(basePath);
@@ -165,6 +175,7 @@ public class MediaSource {
 	public void setType(Type type) {
 		this.type = type;
 	}
+	@JsonIgnore
 	public List<MovieFile> getMovies(){
 		if(movieFiles == null)
 			movieFiles = new LinkedList<>();
