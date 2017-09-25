@@ -51,7 +51,8 @@ class IcingPlayer {
 		{
 			event: eventName,
 			ts: this.player.currentTime,
-			date: new Date().getTime()
+			tt: this.player.duration,
+			date: new Date().getTime(),
 		}));
 	}
 	
