@@ -1,0 +1,30 @@
+image: 'maven:alpine'
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - mvn package -DskipTests
+  artifacts:
+    paths:
+      - target/*.war
+    expire_in: 1 week
+
+test:
+  stage: test
+  script:
+    - mvn test
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Run dep script here"
+  only:
+    - master
+
+after_script:
+  - echo "End CI"
