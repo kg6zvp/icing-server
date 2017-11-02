@@ -1,0 +1,10 @@
+
+swarm:
+  datasources:
+    data-sources:
+      icing-media:
+        jndi-name: java:/icing-media
+        driver-name: h2
+        connection-url: jdbc:h2:file:icing-database;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE
+        username:
+        password:
