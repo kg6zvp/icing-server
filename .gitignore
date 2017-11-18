@@ -1,1 +1,3 @@
 target/
+icing-database.h2.db
+icing-database.trace.db
