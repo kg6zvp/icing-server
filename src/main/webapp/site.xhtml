@@ -11,14 +11,31 @@
 <h:head>
 	<ui:insert name="head"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<h:outputStylesheet library="css" name="theme.css"/>
+	<h:outputStylesheet library="css" name="style.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 </h:head>
+<h:body>
 	<p:growl id="messages" />
-
-	<p:menubar>
-		<p:menuitem value="Home" url="/web/"/>
-		<p:menuitem value="Sources" url="/web/sources/"/>
-		<p:menuitem value="Movies" url="/web/library/movies/"/>
-	</p:menubar>
-
+	<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in" id="sidebar">
+            <div class="list-group panel">
+                <a href="/web/" class="list-group-item collapsed" data-parent="#sidebar"><i class="fa fa-home fa-lg"> Home</i> <span class="hidden-sm-down"></span></a>
+                <a href="/web/sources/" class="list-group-item collapsed" data-parent="#sidebar"><i class="fa fa-book fa-lg"> Sources</i> <span class="hidden-sm-down"></span></a>
+                <a href="/web/library/movies/" class="list-group-item collapsed" data-parent="#sidebar"><i class="fa fa-film fa-lg"> Movies</i> <span class="hidden-sm-down"></span></a>
+            </div>
+        </div>
+        <main class="col-md-9 col-xs-11 p-l-2 p-t-2">
+            <a href="#sidebar" data-toggle="collapse"><i class="fa fa-navicon fa-lg"> <img id="img1" src="http://svn.mccollum.enterprises/icing-graphics-assets/transparent_icon.png"></img></i></a>
+            <hr />
+				</main>
+    </div>
+</div>
 	<ui:insert name="content"/>
+</h:body>
 </html>

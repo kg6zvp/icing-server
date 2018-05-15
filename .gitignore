@@ -1,6 +1,8 @@
 target/
 .settings/
+.vscode/
 .classpath
 .project
 icing-database.h2.db
 icing-database.trace.db
+icing-database.lock.db

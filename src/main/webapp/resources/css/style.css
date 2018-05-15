@@ -1,0 +1,81 @@
+.box {
+  background: var(--icing-hilight-background);
+   box-shadow: inset -2px 2px 7px rgba(0,0,0,.2), inset 2px -2px 7px rgba(0,0,0,.2), 2px 12px 5px rgba(0,0,0,.4), 4px 3px 8px rgba(0,0,0,.4), 5px 10px 10px rgba(0,0,0,.2), -5px 10px 10px rgba(0,0,0,.4);
+  -webkit-box-shadow: inset -2px 2px 7px rgba(0,0,0,.2), inset 2px -2px 7px rgba(0,0,0,.2), 2px 12px 5px rgba(0,0,0,.4), 4px 3px 8px rgba(0,0,0,.4), 5px 10px 10px rgba(0,0,0,.2), -5px 10px 10px rgba(0,0,0,.4);
+   position: relative;
+   border-radius: 20px;
+   width: 400px;
+  height: 390px;
+   padding: 40px 0 0;
+   text-align:center;
+ }
+
+ .fa-navicon{
+margin-top:20px;
+margin-left:-5px;
+ }
+
+ hr{
+   background-color:rgb(151, 151, 151);
+   width: 137.5%;
+   padding: .3px;
+   margin-left: -2%;
+   box-shadow: inset -2px 2px 7px rgba(0,0,0,.2), inset 2px -2px 7px  rgba(0,0,0,.4), -5px 10px 10px rgba(0,0,0,.4);
+   border-radius:10px;
+ }
+
+ #sidebar .list-group-item {
+  border-radius: 10px;
+  background-color: #333;
+  color: #ccc;
+  border-left: 0;
+  border-right: 0;
+  border-color: #2c2c2c;
+  white-space: nowrap;
+  margin-top:10px;
+margin-left:-2%;
+}
+
+
+/* change transition animation to width when entire sidebar is toggled */
+#sidebar.collapse {
+-webkit-transition-timing-function: ease;
+     -o-transition-timing-function: ease;
+        transition-timing-function: ease;
+-webkit-transition-duration: .2s;
+     -o-transition-duration: .2s;
+        transition-duration: .2s;
+}
+
+#sidebar.collapsing {
+opacity: 0.8;
+width: 0;
+-webkit-transition-timing-function: ease-in;
+     -o-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+-webkit-transition-property: width;
+     -o-transition-property: width;
+        transition-property: width;
+
+}
+
+#img1{
+  height:38px;
+  width:40px;
+  border-radius:40%;
+}
+
+#img2{
+  height:200x;
+  width:150px;
+  border-radius:10px;
+}
+
+#movies{
+background-color:black;
+}
+
+#sources{
+background-color:black
+}
+
