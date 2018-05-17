@@ -1,3 +1,5 @@
+[![pipeline status](http://gitlab.mccollum.enterprises/icing/media/badges/master/pipeline.svg)](http://gitlab.mccollum.enterprises/icing/media/pipelines)
+
 # Icing Node
 
 ## Install
