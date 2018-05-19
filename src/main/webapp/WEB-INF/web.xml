@@ -11,12 +11,6 @@
 		<welcome-file>index.xhtml</welcome-file>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-
-	<!-- This is included to set the primefaces ui theme to twitter bootstrap (very pretty, but can be removed) -->
-	<context-param>
-		<param-name>primefaces.THEME</param-name>
-		<param-value>bootstrap</param-value>
-	</context-param>
 	
 	<!-- This is included to direct the Java EE web server to look for the icing tag library -->
 	<context-param>

@@ -13,14 +13,15 @@
 			<title>Icing</title>
 		</ui:define>
 		<ui:define name="content">
-			<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-				Welcome to Icing
-				<br/>
-				<br/>
-				<h:outputLink value="library/movies/">My Movies (#{dashboardView.getMovies().size()})</h:outputLink>
-				<br/>
-				<h:outputLink value="sources/">Manage Sources (#{dashboardView.getSources().size()})</h:outputLink>
-			</div>
+			<h:body>	
+				<div class="box" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+					<img id="img2" src='http://svn.mccollum.enterprises/icing-graphics-assets/black_full_logo.png'/>
+					<br/>
+					<br/>
+					<div id="movies" class="btn btn-primary"><h:outputLink  value="library/movies/">Movies (#{dashboardView.getMovies().size()})</h:outputLink></div>
+					<div id="sources" class="btn btn-primary"><h:outputLink  value="sources/">Sources (#{dashboardView.getSources().size()})</h:outputLink></div> <br/>
+				</div>
+			</h:body>
 		</ui:define>
 	</ui:composition>
 </html>

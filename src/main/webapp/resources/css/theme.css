@@ -1,0 +1,14 @@
+:root {
+    --icing-background-color: #232323;
+    --icing-hilight-background: rgb(81,176,215);
+    /*--icing-hilight-foreground: NULL; //insert hamburger color here */
+}
+
+body,html, div.container-fluid{
+    background-color: var(--icing-background-color);
+    overflow-x: hidden; 
+}
+
+div{
+    font-family: 'Fjalla One', sans-serif;
+}
