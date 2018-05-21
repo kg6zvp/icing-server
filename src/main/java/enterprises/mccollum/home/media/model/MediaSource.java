@@ -14,6 +14,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Intended to represent a location on the filesystem containing media
@@ -27,6 +32,9 @@ public class MediaSource {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	Long id;
 	
+	@NotNull
+	@Column(unique = true)
+	@Size(min = 1, max = 20)
 	String name;
 	
 	Long ownerId;
@@ -60,6 +68,22 @@ public class MediaSource {
 	Type type;
 	
 	public MediaSource(){}
+
+	@PrePersist
+	private void prePersist(){
+		setProperName();
+	}
+
+	@PreUpdate
+	private void preUpdate(){
+		setProperName();
+	}
+
+	public void setProperName(){
+		for(char c : " $%#*()+=!@".toCharArray()){
+			this.name = name.replace(c, '_');
+		}
+	}
 	
 	/**
 	 * Get url suitable for use by apache commons vfs
