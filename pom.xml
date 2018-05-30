@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<version.wildfly.swarm>2017.6.0</version.wildfly.swarm>
+		<version.wildfly.swarm>2018.5.0</version.wildfly.swarm>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -101,51 +101,15 @@
 		
 		<!-- WildFly Swarm Fractions (the thing that lets us run this in a single jar) -->
 		<dependency>
-			<!-- Allows use of @Inject (google Java CDI) -->
-			<groupId>org.wildfly.swarm</groupId>
-			<artifactId>cdi</artifactId>
-		</dependency>
-		<dependency>
-			<!-- ?, something to make CDI work, could be automatic classpath scanning -->
-			<groupId>org.wildfly.swarm</groupId>
-			<artifactId>cdi-config</artifactId>
-		</dependency>
-		<dependency>
-			<!-- Allows use of EJBs -->
-			<groupId>org.wildfly.swarm</groupId>
-			<artifactId>ejb</artifactId>
-		</dependency>
-		<dependency>
-			<!-- Allows the use of JPA (database access; google JPA) -->
-			<groupId>org.wildfly.swarm</groupId>
-			<artifactId>jpa</artifactId>
-		</dependency>
-		<dependency>
 			<!-- Adds a simple embedded database right into the application -->
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<!-- <version>1.4.195</version> -->
+			<version>1.4.195</version>
 		</dependency>
 		<dependency>
 			<!-- Provides the ability to host a Web UI -->
 			<groupId>org.wildfly.swarm</groupId>
 			<artifactId>jsf</artifactId>
-		</dependency>
-		<dependency>
-			<!-- Provides the ability to expose a ReST API (Jax-RS is the way to build ReST APIs in Java EE) -->
-			<groupId>org.wildfly.swarm</groupId>
-			<artifactId>jaxrs</artifactId>
-			<!-- <version>${version.wildfly.swarm}</version> -->
-		</dependency>
-
-		<dependency>
-			<groupId>io.undertow</groupId>
-			<artifactId>undertow-core</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>io.undertow</groupId>
-			<artifactId>undertow-servlet</artifactId>
 		</dependency>
 
 
@@ -160,6 +124,7 @@
 			<!-- JUnit Testing -->
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -207,6 +172,9 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<fractionDetectMode>force</fractionDetectMode>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
