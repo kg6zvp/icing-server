@@ -5,10 +5,7 @@ target/
 .project
 
 #Database Files
-icing-database.h2.db
-icing-database.trace.db
-icing-database.lock.db
-icing-database.mv.db
+icing-database.*.db
 
 #Log Files
 log.txt
