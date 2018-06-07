@@ -43,6 +43,18 @@ $ sudo yum install -y java-1.8.0-openjdk-devel maven git
 $ sudo apt-get -y install openjdk-8-jdk maven git
 ```
 
+
+#### Ubuntu
+
+```bash
+$ sudo apt-get -y install openjdk-8-jdk maven git
+```
+
+Some tests have found with issues Ubuntu 18.04, running this bash command should fix them
+```bash
+sudo /var/lib/dpkg/info/ca-certificates-java.postinst configure
+```
+
 #### Windows
 
 Using the package manager [chocolatey](https://chocolatey.org/):
