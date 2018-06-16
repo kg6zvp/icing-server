@@ -174,9 +174,6 @@
 				</executions>
 				<configuration>
 					<fractionDetectMode>force</fractionDetectMode>
-					<properties>
-        					<java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
-					</properties>
 				</configuration>
 			</plugin>
 		</plugins>
