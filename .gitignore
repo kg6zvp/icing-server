@@ -3,6 +3,12 @@ target/
 .vscode/
 .classpath
 .project
-icing-database.h2.db
-icing-database.trace.db
-icing-database.lock.db
+
+#Database Files
+icing-database.*.db
+
+#Log Files
+log.txt
+logError.txt
+audit.log
+
